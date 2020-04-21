@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../header/cub3d.h"
 
 int		main(void)
 {
@@ -21,7 +21,7 @@ int		main(void)
 	t_map 			map;
 	t_configuration	config;
 
-	fd = open("test_mlx.cub", O_RDONLY);
+	fd = open("./sources/test_mlx.cub", O_RDONLY);
 	ret_gnl = 1;
 	str = NULL;
 	next = NULL;
@@ -29,14 +29,14 @@ int		main(void)
 	ft_init_map (&map);
 	while (ret_gnl > 0)
 	{
-		ret_gnl = get_next_line(fd, &str);
+		ret_gnl = gnl(fd, &str);
 		if (ft_orient_gnl(ret_gnl, &map, &config, str, next) == 0)
 			return (0);
 		next = ft_strdup(str);
 		free(str);
 	}
-	printf("OK\n");
-
+	if (map.player == Not_given)
+		return(0);
 	int i = 0;
 	while (map.two_d[i] != NULL)
 	{
