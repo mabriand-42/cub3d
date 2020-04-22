@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../header/cub3d.h"
 
 /*
@@ -26,14 +25,16 @@
 
 int	ft_check_id(char c1, char c2)
 {
-	if ((c1 == 'N' && c2 == 'O') || (c1 == 'W' && c2 == 'E') || (c1 == 'E' && c2 == 'A'))
+	if ((c1 == 'N' && c2 == 'O')
+	|| (c1 == 'W' && c2 == 'E')
+	|| (c1 == 'E' && c2 == 'A'))
 		return (1);
 	return (0);
 }
 
 /*
-** Vérifie si un identifier est présent en début de ligne lue, 
-** en comparant ses un ou deux premiers caracères, à ceux de 
+** Vérifie si un identifier est présent en début de ligne lue,
+** en comparant ses un ou deux premiers caracères, à ceux de
 ** différentes listes données. Si c'est le cas, il crée la chaîne
 ** correspondante à cet identifier via ft_strncpy(3).
 ** =========
@@ -44,49 +45,62 @@ int	ft_check_id(char c1, char c2)
 ** Retourne 1 si c'est le cas, 0 sinon.
 */
 
-int	ft_find_id(char *line, char *identifier, size_t *pos)
+int	ft_find_id(char *line, char *id, size_t *pos)
 {
 	char *letters_0;
 	char *letters_1;
-	char *letters_2;
 
 	letters_0 = "RFC";
 	letters_1 = "NWE";
-	letters_2 = "OEA";
 	if (ft_find_char(line[*pos], letters_0) == 1)
-	{
-		(*pos)++;
-		if (ft_isspace(line[*pos]) == 1)
-		{
-			identifier = ft_strncpy(identifier, line, 1);
-			return (1);
-		}
-	}
+		return (ft_id_rfc(pos, line, id));
 	else if (ft_find_char(line[*pos], letters_1) == 1)
+		return (ft_id_nwe(pos, line, id));
+	else if (line[*pos] == 'S')
+		return (ft_id_s(pos, line, id));
+	return (0);
+}
+
+int	ft_id_nwe(size_t *pos, char *line, char *id)
+{
+	char *letters_2;
+
+	letters_2 = "OEA";
+	(*pos)++;
+	if (ft_isspace(line[*pos]) == 0 || ft_find_char(line[*pos], letters_2) == 1)
 	{
-		(*pos)++;
-		if (ft_isspace(line[*pos]) == 0 || ft_find_char(line[*pos], letters_2) == 1)
+		if (ft_check_id(line[*pos - 1], line[*pos]) == 1)
 		{
-			if (ft_check_id(line[*pos - 1] , line[*pos]) == 1)
-			{
-				identifier = ft_strncpy(identifier, line, 2);
-				return (1);
-			}
+			id = ft_strncpy(id, line, 2);
+			return (1);
 		}
 	}
-	else if (line[*pos] == 'S')
+	return (0);
+}
+
+int	ft_id_rfc(size_t *pos, char *line, char *id)
+{
+	(*pos)++;
+	if (ft_isspace(line[*pos]) == 1)
 	{
-		(*pos)++;
-		if ((ft_isspace(line[*pos]) == 1))
-		{
-			identifier = ft_strncpy(identifier, line, 1);
-			return (1);
-		}
-		else if (line[*pos] == 'O')
-		{
-			identifier = ft_strncpy(identifier, line, 2);
-			return (1);
-		}
+		id = ft_strncpy(id, line, 1);
+		return (1);
+	}
+	return (0);
+}
+
+int	ft_id_s(size_t *pos, char *line, char *id)
+{
+	(*pos)++;
+	if ((ft_isspace(line[*pos]) == 1))
+	{
+		id = ft_strncpy(id, line, 1);
+		return (1);
+	}
+	else if (line[*pos] == 'O')
+	{
+		id = ft_strncpy(id, line, 2);
+		return (1);
 	}
 	return (0);
 }

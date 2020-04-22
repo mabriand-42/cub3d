@@ -22,9 +22,9 @@
 ** =========
 */
 
-void	ft_init_config(t_configuration *config)
+void	ft_init_config(t_config *config)
 {
-	t_configuration c;
+	t_config c;
 
 	c = *config;
 	c.R.x = 0;
@@ -42,6 +42,7 @@ void	ft_init_config(t_configuration *config)
 	c.F.G = -1;
 	c.F.B = -1;
 	ft_init_check(&c.check);
+	//ft_init_map(&c.M); //add
 	*config = c;
 }
 
@@ -75,7 +76,7 @@ void	ft_init_check(t_check *check)
 /*
 ** Initialise une structure de type t_map
 ** en mettant les deux versions de la carte
-** (1D et 2D) à NULL, le statut de la première 
+** (1D et 2D) à NULL, le statut de la première
 ** ligne de la map en "Empty" et celui de la
 ** position du joueur en "Not_given".
 ** =========
@@ -86,11 +87,27 @@ void	ft_init_check(t_check *check)
 void	ft_init_map(t_map *map)
 {
 	t_map m;
-	
+
 	m = *map;
 	m.map = NULL;
 	m.two_d = NULL;
 	m.first = Empty;
 	m.player = Not_given;
 	*map = m;
+}
+
+void	ft_update_player(char c, t_map *m)
+{
+	t_map m_2;
+
+	m_2 = *m;
+	if (c == 'N')
+		m_2.player = North;
+	if (c == 'S')
+		m_2.player = South;
+	if (c == 'E')
+		m_2.player = East;
+	if (c == 'W')
+		m_2.player = West;
+	*m = m_2;
 }

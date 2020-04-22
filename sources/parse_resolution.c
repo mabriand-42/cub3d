@@ -17,8 +17,8 @@
 ** afin de récupèrer un nbr de pixels.
 ** =========
 ** #1 : une chaîne de caractères
-		(correspond à la ligne lue par GNL).
-** #2 : un pointeur sur une position dans cette chaîne. 
+**		(correspond à la ligne lue par GNL).
+** #2 : un pointeur sur une position dans cette chaîne.
 ** =========
 ** Retourne un entier positif.
 */
@@ -46,28 +46,28 @@ size_t	ft_axis(char *line, size_t *pos)
 /*
 ** Récupère, à l'aide de ft_axis(2) les tailles de rendu en pixels
 ** des axes x et y, et affecte ces valeurs aux champs correspondant
-** d'une stucture R de type t_resolution.
+** d'une stucture r de type t_resolution.
 ** =========
 ** #1 : une chaîne de caractères
-		(correspond à la ligne lue par GNL).
-** #2 : un pointeur sur une position dans cette chaîne. 
+**		(correspond à la ligne lue par GNL).
+** #2 : un pointeur sur une position dans cette chaîne.
 ** #3 : un pointeur sur une t_resolution.
 ** =========
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
 */
 
-int	ft_xy(char *line, size_t *pos, t_resolution *R)
+int		ft_xy(char *line, size_t *pos, t_resolution *r)
 {
-	t_resolution r;
-	int ret;
+	t_resolution	r_2;
+	int				ret;
 
-	r = *R;
+	r_2 = *r;
 	ret = 0;
-	if ((r.x = ft_axis(line, pos)) != 0)
+	if ((r_2.x = ft_axis(line, pos)) != 0)
 	{
-		if ((r.y = ft_axis(line, pos)) != 0)
+		if ((r_2.y = ft_axis(line, pos)) != 0)
 		{
-			*R = r;
+			*r = r_2;
 			ret = 1;
 		}
 	}
@@ -76,20 +76,20 @@ int	ft_xy(char *line, size_t *pos, t_resolution *R)
 
 /*
 ** Récupère les informations de résolution
-** puis vérifie leur validité ainsi que celle 
+** puis vérifie leur validité ainsi que celle
 ** du check correspondant et actualise ce dernier
 ** en "Filled" si tout est OK.
 ** =========
 ** #1 : une chaîne de caractères
-		(correspond à la ligne lue par GNL).
-** #2 : un pointeur sur une position dans cette chaîne. 
+**		(correspond à la ligne lue par GNL).
+** #2 : un pointeur sur une position dans cette chaîne.
 ** #3 : un pointeur sur une t_resolution.
-** #4 : un pointeur sur un t_bool. 
+** #4 : un pointeur sur un t_bool.
 ** =========
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
 */
 
-int	ft_r(char *line, size_t *pos, t_resolution *r, t_bool *check)
+int		ft_r(char *line, size_t *pos, t_resolution *r, t_bool *check)
 {
 	size_t			pos_2;
 	t_resolution	r_2;

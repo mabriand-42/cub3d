@@ -17,10 +17,10 @@
 ** afin de récupèrer une intensité colorimétrique.
 ** =========
 ** #1 : une chaîne de caractères
-		(correspond à la ligne lue par GNL).
-** #2 : un pointeur sur une position dans cette chaîne. 
+**		(correspond à la ligne lue par GNL).
+** #2 : un pointeur sur une position dans cette chaîne.
 ** =========
-** Retourne un entier positif compris entre 0 et 255, 
+** Retourne un entier positif compris entre 0 et 255,
 ** -1 en cas d'erreur.
 */
 
@@ -52,30 +52,30 @@ int	ft_color(char *line, size_t *pos)
 ** Récupère, à l'aide de ft_color(2) les valeurs RGB
 ** d'une couleur, vérifie qu'elles sont correctement
 ** séparées, et les affecte aux champs correspondant
-** d'une stucture C de type t_color.
+** d'une stucture c de type t_color.
 ** =========
 ** #1 : une chaîne de caractères
-		(correspond à la ligne lue par GNL).
-** #2 : un pointeur sur une position dans cette chaîne. 
+**		(correspond à la ligne lue par GNL).
+** #2 : un pointeur sur une position dans cette chaîne.
 ** #3 : un pointeur sur une t_color.
 ** =========
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
 */
 
-int	ft_rgb(char *line, size_t *pos, t_color *C)
+int	ft_rgb(char *line, size_t *pos, t_color *c)
 {
-	t_color c;
-	int ret;
+	t_color	c_2;
+	int		ret;
 
-	c = *C;
+	c_2 = *c;
 	ret = 0;
-	if ((c.R = ft_color(line, pos)) != -1)
+	if ((c_2.R = ft_color(line, pos)) != -1)
 	{
-		if ((line[(*pos)++] == ',') && (c.G = ft_color(line, pos)) != -1)
+		if ((line[(*pos)++] == ',') && (c_2.G = ft_color(line, pos)) != -1)
 		{
-			if ((line[(*pos)++] == ',') && (c.B = ft_color(line, pos)) != -1)
+			if ((line[(*pos)++] == ',') && (c_2.B = ft_color(line, pos)) != -1)
 			{
-				*C = c;
+				*c = c_2;
 				ret = 1;
 			}
 		}
@@ -85,15 +85,15 @@ int	ft_rgb(char *line, size_t *pos, t_color *C)
 
 /*
 ** Récupère les valeurs RGB d'une couleur
-** puis vérifie leur validité ainsi que celle 
+** puis vérifie leur validité ainsi que celle
 ** du check correspondant et actualise ce dernier
 ** en "Filled" si tout est OK.
 ** =========
 ** #1 : une chaîne de caractères
-		(correspond à la ligne lue par GNL).
-** #2 : un pointeur sur une position dans cette chaîne. 
+**		(correspond à la ligne lue par GNL).
+** #2 : un pointeur sur une position dans cette chaîne.
 ** #3 : un pointeur sur une t_color.
-** #4 : un pointeur sur un t_bool. 
+** #4 : un pointeur sur un t_bool.
 ** =========
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
 */

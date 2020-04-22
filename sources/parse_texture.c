@@ -17,15 +17,15 @@
 ** correspondant à un path vers une texture.
 ** =========
 ** #1 : une chaîne de caractères
-		(correspond à la ligne lue par GNL).
+**		(correspond à la ligne lue par GNL).
 ** #2 : un pointeur sur une position dans cette chaîne.
 ** #3 : l'adresse d'une chaîne de caractères
-		(correspondant un path contenu dans
-		une t_configuration et initialisé à NULL
-		en début de parsing). 
+**		(correspondant un path contenu dans
+**		une t_configuration et initialisé à NULL
+**		en début de parsing).
 ** =========
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
-*/ 
+*/
 
 int	ft_path(char *line, size_t *pos, char **path)
 {
@@ -48,10 +48,10 @@ int	ft_path(char *line, size_t *pos, char **path)
 ** ce dernier en "Filled" si tout est OK.
 ** =========
 ** #1 : une chaîne de caractères
-		(correspond à la ligne lue par GNL).
-** #2 : un pointeur sur une position dans cette chaîne. 
+**		(correspond à la ligne lue par GNL).
+** #2 : un pointeur sur une position dans cette chaîne.
 ** #3 : un pointeur sur une t_resolution.
-** #4 : un pointeur sur un t_bool. 
+** #4 : un pointeur sur un t_bool.
 ** =========
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
 */

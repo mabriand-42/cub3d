@@ -23,44 +23,24 @@
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
 */
 
-int	ft_elem_parsing(char *line, t_configuration *config)
+int	ft_elem_parsing(char *line, t_config *c)
 {
-	t_configuration	c;
-	size_t			pos;
-	char			*identifier;
-	int				ret;
+	t_config	c_2;
+	size_t		pos;
+	char		*id;
+	int			ret;
 
-	c = *config;
+	c_2 = *c;
 	pos = 0;
 	ret = -1;
-	if(!(identifier = (char *)malloc(sizeof(char) * 3)))
+	if (!(id = (char *)malloc(sizeof(char) * 3)))
 		return (ret);
-	if (ft_find_id(line, identifier, &pos) == 1)
-	{
-		if (ft_strcmp(identifier, "R") == 0)
-			ret = ft_r(line, &pos, &c.R, &c.check.Resolution);
-		else if (ft_strcmp(identifier, "NO") == 0)
-			ret = ft_t(line, &pos, &c.T.path_NO, &c.check.NO_texture);
-		else if (ft_strcmp(identifier, "SO") == 0)
-			ret = ft_t(line, &pos, &c.T.path_SO, &c.check.SO_texture);
-		else if (ft_strcmp(identifier, "WE") == 0)
-			ret = ft_t(line, &pos, &c.T.path_WE, &c.check.WE_texture);
-		else if (ft_strcmp(identifier, "EA") == 0)
-			ret = ft_t(line, &pos, &c.T.path_EA, &c.check.EA_texture);
-		else if (ft_strcmp(identifier, "S") == 0)
-		{
-			pos--;
-			ret = ft_t(line, &pos, &c.T.path_S, &c.check.S_texture);
-		}
-		else if (ft_strcmp(identifier, "F") == 0)
-			ret = ft_cf(line, &pos, &c.F, &c.check.Ground_color);
-		else if (ft_strcmp(identifier, "C") == 0)
-			ret = ft_cf(line, &pos, &c.C, &c.check.Ceiling_color);
-	}
+	if (ft_find_id(line, id, &pos) == 1)
+		ret = ft_get_config(id, line, &pos, &c_2);
 	else if (line[0] == '\0')
 		ret = 1;
-	free(identifier);
-	*config = c;
+	free(id);
+	*c = c_2;
 	return (ret);
 }
 
@@ -75,36 +55,38 @@ int	ft_elem_parsing(char *line, t_configuration *config)
 ** #5 : la chaîne de caractères précédente (lue par GNL).
 ** =========
 ** Retourne 1 si tout est OK, 0 sinon.
-*/ 
+*/
 
-int	ft_orient_gnl(int ret_gnl, t_map *map, t_configuration *config, char *str, char *prev)
+int	ft_orient_gnl(int ret_gnl, t_map *m, t_config *c, char *str, char *prev)
 {
-	t_map			map_2;
-	t_configuration	config_2;
-	char			*line;
-	int				ret_elem_parsing;
+	t_map		m_2;
+	t_config	c_2;
+	char		*line;
+	int			ret_ep;
+	size_t 		i;
 
-	map_2 = *map;
-	config_2 = *config;
+	m_2 = *m;
+	c_2 = *c;
 	line = ft_strdup(str);
-	ret_elem_parsing = ft_elem_parsing(line, &config_2);
+	ret_ep = ft_elem_parsing(line, &c_2);
+	i = 0;
 	if (ret_gnl == 0)
 	{
-		if (ft_check_isolated_line(line) == 0
-		|| ((ft_check_isolated_line(line) == 1) && (ft_lines(line, prev, &map_2, &config_2) == 0)))
+		if (ft_closed_map(line, &i) == 0 || ((ft_closed_map(line, &i) == 1)
+		&& (ft_lines(line, prev, &m_2, &c_2) == 0)))
 			return (0);
-		ft_transform_map(&map_2);
+		ft_transform_map(&m_2);
 	}
 	else
 	{
-		if (ret_elem_parsing == 1)
+		if (ret_ep == 1)
 			free(prev);
-		else if ((ret_elem_parsing == 0)
-		|| ((ret_elem_parsing == -1) && (ft_lines(line, prev, &map_2, &config_2) == 0)))
+		else if ((ret_ep == 0) || ((ret_ep == -1)
+		&& (ft_lines(line, prev, &m_2, &c_2) == 0)))
 			return (0);
 	}
-	*map = map_2;
-	*config = config_2;
+	*m = m_2;
+	*c = c_2;
 	free(line);
 	return (1);
 }

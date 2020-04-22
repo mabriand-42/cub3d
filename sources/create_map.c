@@ -13,18 +13,18 @@
 #include "../header/cub3d.h"
 
 /*
-** Concatène next et la chaîne représentant la map en 1D 
+** Concatène next et la chaîne représentant la map en 1D
 ** (contenue dans le champ correspondant de la t_map passée
 ** en paramètre), séparant les deux chaînes par '-'.
 ** S'il s'agit de la première ligne de la map, la fonction
-** actualise le statut correponsant en "Filled" afin qu'au(x) 
+** actualise le statut correponsant en "Filled" afin qu'au(x)
 ** prochain(s) appel(s), le deuxième bloc d'instructions soit exécuté.
 ** =========
 ** #1 : un pointeur sur une t_map.
 ** #2 : une chaîne de caractères.
 ** #3 : un pointeur sur la valeur de retour de ft_lines(4).
 ** =========
-*/ 
+*/
 
 void	ft_join_for_map(t_map *map, char *next, int *ret)
 {
@@ -59,20 +59,22 @@ void	ft_join_for_map(t_map *map, char *next, int *ret)
 ** #4 : un pointeur sur une t_configuration.
 ** =========
 ** Retourne 1 si tout est OK, 0 sinon.
-*/ 
+*/
 
-int		ft_lines(char *line, char *prev, t_map *map, t_configuration *config)
+int		ft_lines(char *line, char *prev, t_map *map, t_config *config)
 {
-	t_map			m;
-	t_configuration	c;
-	int				ret;
+	t_map		m;
+	t_config	c;
+	int			ret;
+	size_t		i;
 
 	m = *map;
 	c = *config;
 	ret = 0;
+	i = 0;
 	if (m.first == Empty && (ft_check_config(c.check) == 1))
 	{
-		if (ft_check_isolated_line(line) == 1)
+		if (ft_closed_map(line, &i) == 1)
 			ft_join_for_map(&m, line, &ret);
 	}
 	else if (m.first == Filled && (ft_check_config(c.check) == 1))
@@ -91,9 +93,9 @@ int		ft_lines(char *line, char *prev, t_map *map, t_configuration *config)
 ** =========
 ** #1 : un pointeur sur une t_map.
 ** =========
-*/ 
+*/
 
-void			ft_transform_map(t_map *map)
+void	ft_transform_map(t_map *map)
 {
 	t_map m;
 

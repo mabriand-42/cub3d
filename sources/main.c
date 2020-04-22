@@ -19,7 +19,7 @@ int		main(void)
 	char			*str;
 	char *next;
 	t_map 			map;
-	t_configuration	config;
+	t_config	config;
 
 	fd = open("./sources/test_mlx.cub", O_RDONLY);
 	ret_gnl = 1;
@@ -43,6 +43,7 @@ int		main(void)
 		printf("%s\n", map.two_d[i]);
 		i++;
 	}
+	/*
 	printf("=======RESOLUTION=====\n");
 	printf("%zu\n", config.R.x);
 	printf("%zu\n", config.R.y);
@@ -70,6 +71,6 @@ int		main(void)
 	printf("%d\n", map.player);
 	system("leaks a.out");
 	//while (1)
-	//	;
+	//	;*/
 	return (0);
 }

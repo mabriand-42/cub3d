@@ -19,7 +19,7 @@
 ** #1 : un t_check.
 ** =========
 ** Retourne 0 si une des informations de
-** configuration est manquante, 1 si tout est OK. 
+** configuration est manquante, 1 si tout est OK.
 */
 
 int		ft_check_config(t_check check)
