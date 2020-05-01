@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
-# include <stddef.h>
 # include "get_next_line.h"
 # include "libftprintf.h"
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_resolution.c                               :+:      :+:    :+:   */
+/*   parse_resolution.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabriand <mabriand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -78,7 +78,7 @@ int		ft_xy(char *line, size_t *pos, t_resolution *r)
 ** Récupère les informations de résolution
 ** puis vérifie leur validité ainsi que celle
 ** du check correspondant et actualise ce dernier
-** en "Filled" si tout est OK.
+** en "YES" si tout est OK.
 ** =========
 ** #1 : une chaîne de caractères
 **		(correspond à la ligne lue par GNL).
@@ -98,9 +98,9 @@ int		ft_r(char *line, size_t *pos, t_resolution *r, t_bool *check)
 	pos_2 = *pos;
 	r_2 = *r;
 	check_2 = *check;
-	if ((ft_xy(line, &pos_2, &r_2) == 1) && (check_2 == Empty))
+	if ((ft_xy(line, &pos_2, &r_2) == 1) && (check_2 == NO))
 	{
-		check_2 = Filled;
+		check_2 = YES;
 		*pos = pos_2;
 		*r = r_2;
 		*check = check_2;

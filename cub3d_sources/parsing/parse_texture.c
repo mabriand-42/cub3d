@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_textures.c                                 :+:      :+:    :+:   */
+/*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabriand <mabriand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -45,7 +45,7 @@ int	ft_path(char *line, size_t *pos, char **path)
 /*
 ** Récupère le path vers une texture, vérifie
 ** la validité du check correspondant et actualise
-** ce dernier en "Filled" si tout est OK.
+** ce dernier en "YES" si tout est OK.
 ** =========
 ** #1 : une chaîne de caractères
 **		(correspond à la ligne lue par GNL).
@@ -66,9 +66,9 @@ int	ft_t(char *line, size_t *pos, char **path, t_bool *check)
 	path_2 = *path;
 	check_2 = *check;
 	pos_2++;
-	if ((ft_path(line, &pos_2, &path_2) == 1) && (check_2 == Empty))
+	if ((ft_path(line, &pos_2, &path_2) == 1) && (check_2 == NO))
 	{
-		check_2 = Filled;
+		check_2 = YES;
 		*pos = pos_2;
 		*path = path_2;
 		*check = check_2;

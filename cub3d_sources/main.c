@@ -14,7 +14,7 @@
 
 int		main(void)
 {
-	int			fd;
+	/*int			fd;
 	int			ret_gnl;
 	t_duo		duo;
 	t_map 		m;
@@ -71,5 +71,5 @@ int		main(void)
 	system("leaks a.out");
 	//while (1)
 	//
-	return (0);
+	return (0);*/
 }

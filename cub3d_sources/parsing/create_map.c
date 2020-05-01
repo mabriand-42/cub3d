@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whole_parsing.c                                    :+:      :+:    :+:   */
+/*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabriand <mabriand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,7 +17,7 @@
 ** (contenue dans le champ correspondant de la t_map passée
 ** en paramètre), séparant les deux chaînes par '-'.
 ** S'il s'agit de la première ligne de la map, la fonction
-** actualise le statut correponsant en "Filled" afin qu'au(x)
+** actualise le statut correponsant en "YES" afin qu'au(x)
 ** prochain(s) appel(s), le deuxième bloc d'instructions soit exécuté.
 ** =========
 ** #1 : un pointeur sur une t_map.
@@ -33,13 +33,13 @@ void	ft_create_map(t_map *map, char *next, int *ret)
 
 	m = *map;
 	r = *ret;
-	if (m.first == Empty)
+	if (m.first == NO)
 	{
 		m.map = ft_strdup(next);
-		m.first = Filled;
+		m.first = YES;
 		r = 1;
 	}
-	else if (m.first == Filled)
+	else if (m.first == YES)
 	{
 		m.map = ft_join_bis(m.map, "-");
 		m.map = ft_join_bis(m.map, next);
@@ -72,12 +72,12 @@ int		ft_lines(char *line, char *prev, t_map *map, t_config *config)
 	c = *config;
 	ret = 0;
 	i = 0;
-	if (m.first == Empty && (ft_check_config(c.check) == 1))
+	if (m.first == NO && (ft_check_config(c.check) == 1))
 	{
 		if (ft_closed_map(line, &i) == 1)
 			ft_create_map(&m, line, &ret);
 	}
-	else if (m.first == Filled && (ft_check_config(c.check) == 1))
+	else if (m.first == YES && (ft_check_config(c.check) == 1))
 	{
 		if (ft_duo_line(line, prev, &m) == 1)
 			ft_create_map(&m, line, &ret);

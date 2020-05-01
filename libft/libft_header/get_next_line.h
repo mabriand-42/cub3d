@@ -16,10 +16,6 @@
 # define BUFFER_SIZE 100
 #endif
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <stdio.h>
 # include <stddef.h>
 # include <fcntl.h>
 # include "libft.h"

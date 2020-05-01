@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_colors.c                                   :+:      :+:    :+:   */
+/*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabriand <mabriand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -87,7 +87,7 @@ int	ft_rgb(char *line, size_t *pos, t_color *c)
 ** Récupère les valeurs RGB d'une couleur
 ** puis vérifie leur validité ainsi que celle
 ** du check correspondant et actualise ce dernier
-** en "Filled" si tout est OK.
+** en "YES" si tout est OK.
 ** =========
 ** #1 : une chaîne de caractères
 **		(correspond à la ligne lue par GNL).
@@ -107,9 +107,9 @@ int	ft_cf(char *line, size_t *pos, t_color *color, t_bool *check)
 	position = *pos;
 	c = *color;
 	check_2 = *check;
-	if ((ft_rgb(line, &position, &c) == 1) && (check_2 == Empty))
+	if ((ft_rgb(line, &position, &c) == 1) && (check_2 == NO))
 	{
-		check_2 = Filled;
+		check_2 = YES;
 		*pos = position;
 		*color = c;
 		*check = check_2;

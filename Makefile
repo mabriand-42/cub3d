@@ -20,12 +20,12 @@ LIBFT = libft/libft_sources/
 #################################### SOURCES ###################################
 
 #------------------------------PARSE-#
-SRCS += $(PARSE)basic.c					$(PARSE)check.c \
-		$(PARSE)create_map.c			$(PARSE)gnl.c \
-		$(PARSE)init.c 					$(PARSE)parse_colors.c \
+SRCS +=	$(PARSE)create_map.c			$(PARSE)gnl.c \
+		$(PARSE)init_pars.c 			$(PARSE)parse_colors.c \
 		$(PARSE)parse_config.c			$(PARSE)parse_map.c \
 		$(PARSE)parse_resolution.c		$(PARSE)parse_texture.c \
-		$(PARSE)parsing.c
+		$(PARSE)parsing.c				$(PARSE)parsing_utils.c	\
+		$(PARSE)update_pars.c	
 
 ##################################### BASIC ####################################
 
