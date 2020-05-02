@@ -31,7 +31,7 @@ int     main(int argc, char **argv)
         return(0);
     }
 ///////////////////	
-	int	ret_cast = ft_raycasting(&cub);
+	int	ret_cast = ft_raycasting_no_g(&cub);
 	if (ret_cast == 0)
 	{
         printf("ERROR : probleme in raycasting!\n\n");

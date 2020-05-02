@@ -1,5 +1,13 @@
 # include "../../cub3d_header/cub3d.h"
 
+double  ft_deg_to_rad(double degree)
+{
+    double  radian;
+
+    radian = (degree/2)*(PI/180);
+    return(radian);
+}
+
 /*
 ** Coms
 */
@@ -16,8 +24,10 @@ void    ft_init_player(t_cub *cub)
     cub->player.coor.x = 0;
     cub->player.coor.y = 0;
     cub->player.dist_to_plane = 0; // ok
-    cub->player.angle.degree = FOV;
-    cub->player.angle.radian = (FOV/2)*(PI/180);
+    cub->player.fov.degree = FOV;
+    cub->player.fov.radian = ft_deg_to_rad(FOV);
+    cub->player.step.degree = FOV/cub->player.plane.x;
+    cub->player.step.radian = ft_deg_to_rad(cub->player.step.degree);
 }
 
 
@@ -99,7 +109,7 @@ double     ft_dist_to_plane(t_cub *cub)
     double  dist_to_plane;
     
     mid_x = cub->player.mid_x;
-    radian = cub->player.angle.radian;
+    radian = cub->player.fov.radian;
 
     dist_to_plane = mid_x/tan(radian);
     return (dist_to_plane);

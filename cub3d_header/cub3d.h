@@ -126,11 +126,26 @@ void    ft_init_player(t_cub *cub);
 
 // raycsting.c
 void    ft_init_cast(t_cub *cub);
-void    ft_affine(t_cub *cub);
-int    ft_raycasting(t_cub *cub);
-int    ft_h_bound(t_cub *cub);
-int     ft_whatisit(char c);
+void    ft_affine_no_l(t_cub *cub);
+void    ft_affine_no_r(t_cub *cub);
+int    ft_raycasting_no_g(t_cub *cub);
 
+int    ft_cp_bound_no_l(t_cub *cub);
+int    ft_h_bound_no_l(t_cub *cub);
+int    ft_v_bound_no_l(t_cub *cub);
+void    ft_search_wall_no_l(t_cub *cub);
+void    ft_perpendicular_wall_no_l(t_cub *cub);
+
+int    ft_cp_bound_no_r(t_cub *cub);
+int    ft_h_bound_no_r(t_cub *cub);
+int    ft_v_bound_no_r(t_cub *cub);
+void    ft_search_wall_no_r(t_cub *cub);
+void    ft_perpendicular_wall_no_r(t_cub *cub);
+
+
+
+
+double  ft_deg_to_rad(double degree);
 ////////////////////////////////////////////////////////////// LODEV
 /*int     ft_get_img(t_cub *cub);
 void    ft_init_keys(t_key *key);

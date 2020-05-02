@@ -172,7 +172,8 @@ typedef struct	s_player
 	double			mid_x;
 	double			mid_y;
 	double			dist_to_plane;
-	t_angle			angle;
+	t_angle			fov;
+	t_angle			step;
 }				t_player;
 
 typedef	struct	s_affine
@@ -186,6 +187,8 @@ typedef	struct	s_cast
 	t_pos		ray_h;
 	t_pos		ray_v;
 	t_angle		angle;
+	t_angle		step;
+	double		delta_x;
 	t_affine	affine;
 	t_bool		wall_hit;
 	int			ray;
