@@ -188,7 +188,7 @@ typedef	struct	s_cast
 	t_pos		ray_v;
 	t_angle		angle;
 	t_angle		step;
-	double		delta_x;
+	double		delta_screen;
 	t_affine	affine;
 	t_bool		wall_hit;
 	int			ray;

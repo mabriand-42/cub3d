@@ -130,11 +130,11 @@ void    ft_affine_no_l(t_cub *cub);
 void    ft_affine_no_r(t_cub *cub);
 int    ft_raycasting_no_g(t_cub *cub);
 
-int    ft_cp_bound_no_l(t_cub *cub);
-int    ft_h_bound_no_l(t_cub *cub);
-int    ft_v_bound_no_l(t_cub *cub);
-void    ft_search_wall_no_l(t_cub *cub);
-void    ft_perpendicular_wall_no_l(t_cub *cub);
+int    ft_no_cp_bound(t_cub *cub);
+int     ft_no_horizontal_l(t_cub *cub);
+int    ft_no_vertical_l(t_cub *cub);
+double  ft_no_wall_l(t_cub *cub);
+double    ft_no_perp_wall(t_cub *cub);
 
 int    ft_cp_bound_no_r(t_cub *cub);
 int    ft_h_bound_no_r(t_cub *cub);
@@ -142,7 +142,7 @@ int    ft_v_bound_no_r(t_cub *cub);
 void    ft_search_wall_no_r(t_cub *cub);
 void    ft_perpendicular_wall_no_r(t_cub *cub);
 
-
+double    ft_hypotenuse(t_coor start, t_coor new);
 
 
 double  ft_deg_to_rad(double degree);

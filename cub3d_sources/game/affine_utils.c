@@ -10,7 +10,7 @@ void    ft_affine_no_l(t_cub *cub)
 
     x = cub->player.coor.x;
     y = cub->player.coor.y;
-    a = (cub->player.dist_to_plane)/(cub->cast.delta_x);
+    a = (cub->player.dist_to_plane)/(cub->cast.delta_screen);
     b = y-(a*x);
     cub->cast.affine.a = a;
     cub->cast.affine.b = b;
@@ -25,8 +25,20 @@ void    ft_affine_no_r(t_cub *cub)
 
     x = cub->player.coor.x;
     y = cub->player.coor.y;
-    a = -(cub->player.dist_to_plane)/(cub->cast.delta_x);
+    a = -(cub->player.dist_to_plane)/(cub->cast.delta_screen);
     b = y-(a*x);
     cub->cast.affine.a = a;
     cub->cast.affine.b = b;
+}
+
+double    ft_hypotenuse(t_coor  start, t_coor new)
+{
+    double  delta_x;
+    double  delta_y;
+    double  dist_to_wall;
+
+    delta_x = fabs(start.x-new.x);
+    delta_y = fabs(start.y-new.y);
+    dist_to_wall = sqrt((delta_x*delta_x)+(delta_y*delta_y));
+    return(dist_to_wall);
 }
