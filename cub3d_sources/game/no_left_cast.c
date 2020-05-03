@@ -54,7 +54,7 @@ int    ft_no_horizontal_l(t_cub *cub)
         cub->cast.first_H = YES;
     }
     cub->cast.ray_h.coor.x = ((cub->cast.ray_h.coor.y)-b)/a;
-    if (cub->cast.ray_h.coor.y < 1 || cub->cast.ray_h.coor.x < 0)
+    if (cub->cast.ray_h.coor.x < 0 || cub->cast.ray_h.coor.y < 1)
         return (0);
     //printf("ft_h coor (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
     cub->cast.ray_h.box.x = (int)floor(cub->cast.ray_h.coor.x);
@@ -109,35 +109,34 @@ double    ft_no_wall_l(t_cub *cub)
     {
         h_bound = ft_no_horizontal_l(cub);
         v_bound = ft_no_vertical_l(cub);
-        printf("BOUND H: %d, V: %d)\n", h_bound, v_bound);
+        //printf("LEFT bound H: %d, V: %d)\n", h_bound, v_bound);
         if (h_bound == 1 && v_bound == 0)
         {
-            //printf("horizontal hit at (%d,%d)\n", cub->cast.ray_h.box.x, cub->cast.ray_h.box.y);
-            //printf("coor (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
+            printf("LEFT hit H at (%d,%d)\n", cub->cast.ray_h.box.x, cub->cast.ray_h.box.y);
+            printf("coor (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
             return(ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor));
         }
         else if (h_bound == 0 && v_bound == 1)
         {
-            //printf("VERTICAL HIT at (%d,%d)\n", cub->cast.ray_v.box.x, cub->cast.ray_v.box.y);
-            //printf("coor (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
+            printf("LEFT hit V at (%d,%d)\n", cub->cast.ray_v.box.x, cub->cast.ray_v.box.y);
+            printf("coor (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
             return(ft_hypotenuse(cub->player.coor, cub->cast.ray_v.coor));
         }
         else if (h_bound == 1 && v_bound == 1)
         {
-            printf("\n\nOMGGGGGGGGGGGGGGGGGGGGGGGG\n\n");
             dist_h = ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor);
             dist_v = ft_hypotenuse(cub->player.coor, cub->cast.ray_v.coor);
             if (dist_h <= dist_v)
             {
-                printf("H SHORTER\n");
+                printf("\n\nLH shorter coor (%f,%f)\n\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
                 return(dist_h);
             } 
-            printf("v shorter\n");
+            printf("\n\nLV shorter coor (%f,%f)\n\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
             return(dist_v);
         }
         else
         {
-            printf("keep going...");
+            //printf("keep going...");
         }
     }
     return(0);
