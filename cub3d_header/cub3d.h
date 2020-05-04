@@ -141,12 +141,14 @@ int     f_no_horizontal_r(t_cub *cub);
 int     ft_no_vertical_r(t_cub *cub);
 void    ft_search_wall_no_r(t_cub *cub);
 void    ft_perpendicular_wall_no_r(t_cub *cub);
+double  ft_no_wall_left_new(t_cub *cub);
 
 double  ft_hypotenuse(t_coor start, t_coor new);
 
 int     ft_no_horizontal_r(t_cub *cub);
 int     ft_no_vertical_r(t_cub *cub);
 double  ft_no_wall_r(t_cub *cub);
+
 
 double  ft_deg_to_rad(double degree);
 ////////////////////////////////////////////////////////////// LODEV
