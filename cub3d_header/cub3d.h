@@ -21,7 +21,7 @@
 
 
 /*
-** -----------------------------------------------------------------PROTOTYPE---
+** -------------------------------------------------------------------PARSING---
 */
 
 /*
@@ -83,86 +83,67 @@ void			ft_transform_map(t_map *map);
 int				ft_elem_parsing(char *line, t_config *config);
 int				ft_orient_gnl(int ret_gnl, t_map *map, t_config *config, t_duo duo);
 int				ft_get_config(char *id, char *line, size_t *pos, t_config *c);
-int				ft_parse_fd(char *fd_path, t_pars_data *cub);
 
+/*
+** ---------------------------------------------------------------RAY CASINTG---
+*/
 
-
-
-
-
-
-
-
-
-
-int		ft_file_type(const char *type, const char *fd_path);
-int     ft_check_arg(int ac, char **av, t_pars_data  *ptr);
-void    ft_init_parse_struct(t_pars_data *ptr);
-
-void    ft_equivalent_data(t_pars_data *pars_data, t_cub *cub);
-
-int     ft_start(t_cub  *cub);
-
-
-int     ft_pre_start(t_pars_data *pars_data, t_cub *cub, int ac, char **av);
-/////////////////////////////////////////////////////////////SOLO TRY
-
-
-void    ft_get_box_map(t_cub *cub, t_pars_data *pars_data);
-
-
-
-
-
-
-// player.c
+/*
+** Utils
+*/
+double  ft_deg_to_rad(double degree);
+/*
+** Player
+*/
+void    ft_init_player(t_cub *cub);
 int     ft_get_player_data(t_cub *cub);
-double  ft_dist_to_plane(/*t_cub *cub*/);
-
 int     ft_get_player_pos(t_cub *cub);
 void    ft_get_player_dir(t_cub *cub, char c);
 int		ft_iscardinal(char c);
-void    ft_init_player(t_cub *cub);
+/*
+** Affine
+*/
+void    ft_left_affine(t_cub *cub);
+void    ft_right_affine(t_cub *cub);
+double  ft_hypotenuse(t_coor  start, t_coor new);
+double  ft_dist_to_plane(t_cub *cub);
+/*
+** Wall search
+*/
+int     ft_left_h_hit(t_cub *cub);
+int     ft_left_v_hit(t_cub *cub);
+int     ft_right_h_hit(t_cub *cub);
+int     ft_right_v_hit(t_cub *cub);
+void    ft_search_v_hit(double *dist, int *v_bound, t_cub *cub, int (*f)(t_cub *));
+void    ft_search_h_hit(double *dist, int *h_bound, t_cub *cub, int (*f)(t_cub *));
+void    ft_closer_hit(double *dist, t_cub *cub);
+double  ft_search_wall(t_cub *cub, int (*ft_h_hit)(t_cub *), int (*ft_v_hit)(t_cub *));
+double  ft_search_wall_cp(t_cub *cub);
+/*
+** Raycasting
+*/
+void   ft_init_cast(t_cub *cub);
+int    ft_raycasting(t_cub *cub);
 
-// raycsting.c
-void    ft_init_cast(t_cub *cub);
-void    ft_affine_no_l(t_cub *cub);
-void    ft_affine_no_r(t_cub *cub);
-int     ft_raycasting_no_g(t_cub *cub);
+/*
+** -------------------------------------------------------------------PROGRAM---
+*/
 
-int     ft_no_cp_bound(t_cub *cub);
-int     ft_no_horizontal_l(t_cub *cub);
-int     ft_no_vertical_l(t_cub *cub);
-double  ft_no_wall_l(t_cub *cub);
-double  ft_no_perp_wall(t_cub *cub);
-
-int     ft_cp_bound_no_r(t_cub *cub);
-int     f_no_horizontal_r(t_cub *cub);
-int     ft_no_vertical_r(t_cub *cub);
-void    ft_search_wall_no_r(t_cub *cub);
-void    ft_perpendicular_wall_no_r(t_cub *cub);
-double  ft_no_wall_left_new(t_cub *cub);
-
-double  ft_hypotenuse(t_coor start, t_coor new);
-
-int     ft_no_horizontal_r(t_cub *cub);
-int     ft_no_vertical_r(t_cub *cub);
-double  ft_no_wall_r(t_cub *cub);
-
-
-double  ft_deg_to_rad(double degree);
-////////////////////////////////////////////////////////////// LODEV
-/*int     ft_get_img(t_cub *cub);
-void    ft_init_keys(t_key *key);
-void    ft_init_speed(t_speed *speed);*/
-
-/*void    ft_key_relase(int keycode, t_key *key);
-void    ft_key_press(int keycode, t_key *key);*/
-
-/*void    ft_init_player_dir(t_pars_data *pars_data, t_cub *cub);
-void    ft_init_player_plane(t_pars_data *data, t_cub *cub);
-void    ft_init_img(t_cub *cub);
-int     ft_img_data(void *mlx_ptr, char *t_path, t_image t_img);*/
-
+/*
+** Argument
+*/
+int		ft_file_type(const char *type, const char *fd_path);
+int     ft_check_arg(int ac, char **av, t_pars_data  *ptr);
+/*
+** Init
+*/
+void    ft_equivalent_data(t_pars_data *pars_data, t_cub *cub);
+/*
+** Run
+*/
+void    ft_init_parse_struct(t_pars_data *ptr);
+int		ft_parse_fd(char *fd_path, t_pars_data *cub);
+int     ft_pre_start(t_pars_data *pars_data, t_cub *cub, int ac, char **av);
+int     ft_start(t_cub  *cub);
 
 #endif
