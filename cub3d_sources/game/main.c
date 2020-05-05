@@ -31,12 +31,12 @@ int     main(int argc, char **argv)
         return(0);
     }
 ///////////////////	
-	int	ret_cast = ft_raycasting(&cub);
+	/*int	ret_cast = ft_raycasting(&cub);
 	if (ret_cast == 0)
 	{
         printf("ERROR : probleme in raycasting!\n\n");
         return(0);
-    }
+    }*/
 ///////////////////
     ret_ray = ft_start(&cub);
     if (ret_ray == 0)
@@ -44,6 +44,7 @@ int     main(int argc, char **argv)
         printf("ERROR : please check RAYCASTING\n\n");
         return (0);
     }
+///////////////////
     system("leaks a.out");
     return(0);
 }

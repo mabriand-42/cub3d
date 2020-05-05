@@ -33,28 +33,68 @@ void	ft_init_cast(t_cub *cub)
 	cub->cast.first_V = NO;
 }
 
-void	ft_cast_side(t_cub *cub, void (*ft)(t_cub *),
-					int (*ft_h)(t_cub *), int (*ft_v)(t_cub *))
+void	ft_new_angle(t_cub *cub)
 {
+	cub->cast.angle.degree -= (cub->cast.step.degree);
+	cub->cast.angle.radian = ft_deg_to_rad(cub->cast.angle.degree);
+	cub->cast.delta_screen = (cub->player.dist_to_plane) *
+							sin(cub->cast.angle.radian) /
+							cos(cub->cast.angle.radian);
+	cub->cast.first_H = NO;
+	cub->cast.first_V = NO;
+}
+
+
+void	ft_cast_left_side(t_cub *cub)
+{
+	double	dist;
+
+	cub->draw.i = 0;
 	ft_init_cast(cub);
 	while (cub->cast.angle.degree >= cub->cast.step.degree)
+	//(cub->draw.i < cub->player.mid_x) 
+	//(cub->cast.angle.degree >= cub->cast.step.degree)
 	{
-		ft(cub);
-		ft_search_wall(cub, ft_h, ft_v);
-		cub->cast.angle.degree -= (cub->cast.step.degree);
-		cub->cast.angle.radian = ft_deg_to_rad(cub->cast.angle.degree);
-		cub->cast.delta_screen = (cub->player.dist_to_plane) *
-								sin(cub->cast.angle.radian) /
-								cos(cub->cast.angle.radian);
-		cub->cast.first_H = NO;
-		cub->cast.first_V = NO;
+		printf("test");
+		cub->draw.j = 0;
+		ft_left_affine(cub);
+		dist = ft_search_wall(cub, ft_left_h_hit, ft_left_v_hit);
+		ft_draw_pxl_line(cub, dist, cub->draw.i);
+		ft_new_angle(cub);
+		(cub->draw.i)++;
 	}
 }
 
-int		ft_raycasting(t_cub *cub)
+
+void	ft_cast_right_side(t_cub *cub)
 {
-	ft_cast_side(cub, ft_left_affine, ft_left_h_hit, ft_left_v_hit);
-	ft_search_wall_cp(cub);
-	ft_cast_side(cub, ft_right_affine, ft_right_h_hit, ft_right_v_hit);
-	return (1);
+	double	dist;
+
+	cub->draw.i = cub->player.plane.x - 1;
+	ft_init_cast(cub);
+	while (cub->cast.angle.degree >= cub->cast.step.degree)
+	{
+		printf("TEST");
+		cub->draw.j = 0;
+		ft_right_affine(cub);
+		dist = ft_search_wall(cub, ft_right_h_hit, ft_right_v_hit);
+		ft_draw_pxl_line(cub, dist, cub->draw.i);
+		ft_new_angle(cub);
+		(cub->draw.i)--;	
+	}
+}
+
+void	ft_cast_middle(t_cub *cub)
+{
+	double	dist;
+
+	dist = ft_search_wall_cp(cub);
+	ft_draw_pxl_line(cub, dist, cub->draw.i);
+}
+
+void	ft_raycasting(t_cub *cub)
+{
+	ft_cast_left_side(cub);
+	ft_cast_middle(cub);
+	ft_cast_right_side(cub);
 }

@@ -13,6 +13,8 @@ int     ft_start(t_cub  *cub)
         printf("ERROR : seems like the connection couldn't be made!\n\n");
         return (0);
     }
+
+
     /*if (cub->save == NO)
     {
         if ((cub->win.win_ptr = mlx_new_window(cub->mlx_ptr, cub->win.R.x, cub->win.R.y, "test")) == NULL)
@@ -44,6 +46,9 @@ int     ft_start(t_cub  *cub)
         printf("ERROR : seems like window creation failed!\n\n");
         return (0);
     }
+
+	ft_raycasting(cub);
+
 
     printf("YEAH !\n");
     mlx_loop(cub->mlx_ptr);

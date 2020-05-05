@@ -46,7 +46,7 @@ double	ft_search_wall_cp(t_cub *cub)
 	{
 		h_bound = ft_left_h_hit(cub);
 		if (h_bound == 1)
-			dist = ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor);
+			dist = ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor, cub);
 	}
 	return (dist);
 }

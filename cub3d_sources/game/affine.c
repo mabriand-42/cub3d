@@ -72,15 +72,16 @@ void	ft_right_affine(t_cub *cub)
 ** Retourne la distance obtenue.
 */
 
-double	ft_hypotenuse(t_coor start, t_coor new)
+double	ft_hypotenuse(t_coor start, t_coor new, t_cub *cub)
 {
 	double	delta_x;
 	double	delta_y;
 	double	dist_to_wall;
 
 	delta_x = fabs(start.x - new.x);
-	delta_y = fabs(start.y - new.y);
-	dist_to_wall = sqrt((delta_x * delta_x) + (delta_y * delta_y));
+	delta_y = fabs(start.y - new.y); 
+	dist_to_wall = cos(cub->cast.angle.radian) *
+					sqrt((delta_x * delta_x) + (delta_y * delta_y));
 	return (dist_to_wall);
 }
 

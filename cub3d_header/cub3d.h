@@ -105,7 +105,7 @@ int		ft_iscardinal(char c);
 */
 void    ft_left_affine(t_cub *cub);
 void    ft_right_affine(t_cub *cub);
-double  ft_hypotenuse(t_coor  start, t_coor new);
+double  ft_hypotenuse(t_coor  start, t_coor new, t_cub *cub);
 double  ft_dist_to_plane(t_cub *cub);
 /*
 ** Wall search
@@ -122,8 +122,20 @@ double  ft_search_wall_cp(t_cub *cub);
 /*
 ** Raycasting
 */
-void   ft_init_cast(t_cub *cub);
-int    ft_raycasting(t_cub *cub);
+void   	ft_init_cast(t_cub *cub);
+void   	ft_raycasting(t_cub *cub);
+void	ft_new_angle(t_cub *cub);
+//void	ft_cast_side(t_cub *cub, void (*ft)(t_cub *), int (*ft_h)(t_cub *), int (*ft_v)(t_cub *));
+void	ft_cast_middle(t_cub *cub);
+void	ft_cast_left_side(t_cub *cub);
+void	ft_cast_right_side(t_cub *cub);
+/*
+** Draw
+*/
+void	ft_init_draw(t_cub *cub);
+int		ft_scale(double	d_to_plane, double d_to_wall);
+void	ft_draw(t_cub *cub, double d_to_wall);
+void	ft_draw_pxl_line(t_cub *cub, double d_to_wall, int i);
 
 /*
 ** -------------------------------------------------------------------PROGRAM---
@@ -145,5 +157,7 @@ void    ft_init_parse_struct(t_pars_data *ptr);
 int		ft_parse_fd(char *fd_path, t_pars_data *cub);
 int     ft_pre_start(t_pars_data *pars_data, t_cub *cub, int ac, char **av);
 int     ft_start(t_cub  *cub);
+
+
 
 #endif

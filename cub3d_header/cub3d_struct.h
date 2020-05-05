@@ -197,6 +197,15 @@ typedef	struct	s_cast
 
 }				t_cast;
 
+typedef struct	s_draw
+{
+	t_box	ceiling;
+	t_box	wall;
+	t_box	floor;
+	int		i;
+	int		j;
+}				t_draw;
+
 typedef	struct	s_cub 
 {	
 	void		*mlx_ptr;
@@ -213,6 +222,7 @@ typedef	struct	s_cub
 
 	t_player	player;
 	t_cast		cast;
+	t_draw		draw;
 }				t_cub;
 
 
