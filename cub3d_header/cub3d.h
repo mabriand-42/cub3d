@@ -135,7 +135,7 @@ void	ft_cast_right_side(t_cub *cub);
 void	ft_init_draw(t_cub *cub);
 int		ft_scale(double	d_to_plane, double d_to_wall);
 void	ft_draw(t_cub *cub, double d_to_wall);
-void	ft_draw_pxl_line(t_cub *cub, double d_to_wall, int i);
+void	ft_draw_pxl_line(t_cub *cub, double d_to_wall);
 
 /*
 ** -------------------------------------------------------------------PROGRAM---

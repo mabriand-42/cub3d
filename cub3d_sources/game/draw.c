@@ -32,10 +32,11 @@ void	ft_draw(t_cub *cub, double d_to_wall)
 	cub->draw.wall.y = cub->draw.floor.x - 1;
 }
 
-void	ft_draw_pxl_line(t_cub *cub, double d_to_wall, int i)
+void	ft_draw_pxl_line(t_cub *cub, double d_to_wall)
 {
 	ft_init_draw(cub);
 	ft_draw(cub, d_to_wall);
+	printf("pxl line %d / %d\n\n", cub->draw.i, cub->player.plane.x - 1);
 	while (cub->draw.j <= cub->draw.ceiling.y)
 	{	
 		mlx_pixel_put(cub->mlx_ptr, cub->win.win_ptr, cub->draw.i, cub->draw.j, 0xB986);

@@ -21,14 +21,23 @@ void	ft_search_v_hit(double *dist, int *v, t_cub *cub, int (*ft)(t_cub *))
 	while (*v == 0)
 		*v = ft(cub);
 	if (*v == -1)
+	{
+		//printf("H : (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
 		*dist = dist_h;
+	}
 	else if (*v == 1)
 	{
 		dist_v = ft_hypotenuse(cub->player.coor, cub->cast.ray_v.coor, cub);
 		if (dist_h <= dist_v)
+		{
+			//printf("H : (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
 			*dist = dist_h;
+		}
 		else
+		{
+			//printf("V : (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
 			*dist = dist_v;
+		}
 	}
 }
 
@@ -41,14 +50,23 @@ void	ft_search_h_hit(double *dist, int *h, t_cub *cub, int (*ft)(t_cub *))
 	while (*h == 0)
 		*h = ft(cub);
 	if (*h == -1)
+	{
+		//printf("V : (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
 		*dist = dist_v;
+	}
 	else if (*h == 1)
 	{
 		dist_h = ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor, cub);
 		if (dist_h <= dist_v)
+		{
+			//printf("H : (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
 			*dist = dist_h;
+		}
 		else
+		{
+			//printf("V : (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
 			*dist = dist_v;
+		}
 	}
 }
 
@@ -60,7 +78,13 @@ void	ft_closer_hit(double *dist, t_cub *cub)
 	dist_h = ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor, cub);
 	dist_v = ft_hypotenuse(cub->player.coor, cub->cast.ray_v.coor, cub);
 	if (dist_h <= dist_v)
+	{
+		//printf("H : (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
 		*dist = dist_h;
+	}
 	else
+	{
+		//printf("V : (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
 		*dist = dist_v;
+	}
 }
