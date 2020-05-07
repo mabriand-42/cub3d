@@ -191,14 +191,19 @@ typedef	struct	s_cast
 	double		delta_screen;
 	t_affine	affine;
 	t_bool		wall_hit;
-	int			ray;
+	//int			ray;
 	t_bool		first_H;
 	t_bool		first_V;
+	t_cardinal	wall; //
 
 }				t_cast;
 
 typedef struct	s_draw
 {
+	t_color	C;
+	t_color	F;
+	int		C_rgb;
+	int		F_rgb;
 	t_box	ceiling;
 	t_box	wall;
 	t_box	floor;

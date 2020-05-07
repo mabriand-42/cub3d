@@ -13,15 +13,15 @@
 #include "../../cub3d_header/cub3d.h"
 
 /*
-** Calcule le coefficient directeur et l'ordonnée
-** à l'origine d'une fonction affine de la partie
-** gauche du champ de vision du joueur (a > 0).
+** Calcule le coefficient directeur et
+** l'ordonnée à l'origine d'une fonction
+** affine (inversée selon le côté du FOV).
 ** =========
 ** #1 : un pointeur sur un t_cub.
 ** =========
 */
 
-void	ft_left_affine(t_cub *cub)
+void	ft_affine(t_cub *cub, t_bool right)
 {
 	double x;
 	double y;
@@ -31,30 +31,8 @@ void	ft_left_affine(t_cub *cub)
 	x = cub->player.coor.x;
 	y = cub->player.coor.y;
 	a = (cub->player.dist_to_plane) / (cub->cast.delta_screen);
-	b = y - (a * x);
-	cub->cast.affine.a = a;
-	cub->cast.affine.b = b;
-}
-
-/*
-** Calcule le coefficient directeur et l'ordonnée
-** à l'origine d'une fonction affine de la partie
-** droite du champ de vision du joueur (a < 0).
-** =========
-** #1 : un pointeur sur un t_cub.
-** =========
-*/
-
-void	ft_right_affine(t_cub *cub)
-{
-	double x;
-	double y;
-	double a;
-	double b;
-
-	x = cub->player.coor.x;
-	y = cub->player.coor.y;
-	a = -(cub->player.dist_to_plane) / (cub->cast.delta_screen);
+	if (right == YES)
+		a = -a;
 	b = y - (a * x);
 	cub->cast.affine.a = a;
 	cub->cast.affine.b = b;
@@ -79,7 +57,7 @@ double	ft_hypotenuse(t_coor start, t_coor new, t_cub *cub)
 	double	dist_to_wall;
 
 	delta_x = fabs(start.x - new.x);
-	delta_y = fabs(start.y - new.y); 
+	delta_y = fabs(start.y - new.y);
 	dist_to_wall = cos(cub->cast.angle.radian) *
 					sqrt((delta_x * delta_x) + (delta_y * delta_y));
 	return (dist_to_wall);

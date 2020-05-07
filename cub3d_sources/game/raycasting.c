@@ -32,57 +32,15 @@ void	ft_init_cast(t_cub *cub)
 	//cub->cast.ray = 0;
 	cub->cast.first_H = NO;
 	cub->cast.first_V = NO;
-}
-
-void	ft_new_angle(t_cub *cub)
-{
-	cub->cast.angle.degree -= (cub->cast.step.degree);
-	cub->cast.angle.radian = ft_deg_to_rad(cub->cast.angle.degree);
-	cub->cast.delta_screen = (cub->player.dist_to_plane) *
-							sin(cub->cast.angle.radian) /
-							cos(cub->cast.angle.radian);
-	cub->cast.first_H = NO;
-	cub->cast.first_V = NO;
-}
-
-void	ft_left_rays(t_cub *cub)
-{
-	double	dist;
-
-	cub->draw.j = 0;
-	ft_left_affine(cub);
-	dist = ft_search_wall(cub, ft_left_h_hit, ft_left_v_hit);
-	ft_draw_pxl_line(cub, dist);
-	ft_new_angle(cub);
-	(cub->draw.i)++;
+	cub->cast.wall = Not_given; //
 }
 
 void	ft_cast_left_side(t_cub *cub)
 {
 	cub->draw.i = 0;
 	ft_init_cast(cub);
-	if ((cub->player.plane.x % 2) == 0)
-	{
-		while (cub->cast.angle.degree >= cub->cast.step.degree)
-			ft_left_rays(cub);
-	}
-	else
-	{
-		while (cub->draw.i < cub->player.mid_x) 
-			ft_left_rays(cub);
-	}	
-}
-
-void	ft_right_rays(t_cub *cub)
-{
-	double	dist;
-
-	cub->draw.j = 0;
-	ft_right_affine(cub);
-	dist = ft_search_wall(cub, ft_right_h_hit, ft_right_v_hit);
-	ft_draw_pxl_line(cub, dist);
-	ft_new_angle(cub);
-	(cub->draw.i)--;
+	while (cub->draw.i < cub->player.mid_x)
+		ft_draw_left_rays(cub);
 }
 
 void	ft_cast_right_side(t_cub *cub)
@@ -92,15 +50,9 @@ void	ft_cast_right_side(t_cub *cub)
 	cub->draw.i = cub->player.plane.x - 1;
 	ft_init_cast(cub);
 	if ((cub->player.plane.x % 2) == 0)
-	{
-		while (cub->cast.angle.degree >= cub->cast.step.degree)
-			ft_right_rays(cub);
-	}
-	else
-	{
-		while (cub->draw.i > cub->player.mid_x)
-			ft_right_rays(cub);
-	}
+		cub->player.mid_x -= 1;
+	while (cub->draw.i > cub->player.mid_x)
+		ft_draw_right_rays(cub);
 }
 
 void	ft_raycasting(t_cub *cub)

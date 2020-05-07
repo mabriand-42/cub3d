@@ -22,22 +22,13 @@ void	ft_search_v_hit(double *dist, int *v, t_cub *cub, int (*ft)(t_cub *))
 		*v = ft(cub);
 	if (*v == -1)
 	{
-		//printf("H : (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
 		*dist = dist_h;
+		ft_h_wall_orient(cub, cub->cast.ray_h.coor.y, cub->cast.ray_h.box.x);
 	}
 	else if (*v == 1)
 	{
 		dist_v = ft_hypotenuse(cub->player.coor, cub->cast.ray_v.coor, cub);
-		if (dist_h <= dist_v)
-		{
-			//printf("H : (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
-			*dist = dist_h;
-		}
-		else
-		{
-			//printf("V : (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
-			*dist = dist_v;
-		}
+		ft_closer_hit(dist, cub, dist_h, dist_v);
 	}
 }
 
@@ -51,40 +42,26 @@ void	ft_search_h_hit(double *dist, int *h, t_cub *cub, int (*ft)(t_cub *))
 		*h = ft(cub);
 	if (*h == -1)
 	{
-		//printf("V : (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
 		*dist = dist_v;
+		ft_v_wall_orient(cub, cub->cast.ray_v.coor.x, cub->cast.ray_v.box.y);
 	}
 	else if (*h == 1)
 	{
 		dist_h = ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor, cub);
-		if (dist_h <= dist_v)
-		{
-			//printf("H : (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
-			*dist = dist_h;
-		}
-		else
-		{
-			//printf("V : (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
-			*dist = dist_v;
-		}
+		ft_closer_hit(dist, cub, dist_h, dist_v);
 	}
 }
 
-void	ft_closer_hit(double *dist, t_cub *cub)
+void	ft_closer_hit(double *dist, t_cub *cub, double dist_h, double dist_v)
 {
-	double dist_h;
-	double dist_v;
-
-	dist_h = ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor, cub);
-	dist_v = ft_hypotenuse(cub->player.coor, cub->cast.ray_v.coor, cub);
 	if (dist_h <= dist_v)
 	{
-		//printf("H : (%f,%f)\n", cub->cast.ray_h.coor.x, cub->cast.ray_h.coor.y);
 		*dist = dist_h;
+		ft_h_wall_orient(cub, cub->cast.ray_h.coor.y, cub->cast.ray_h.box.x);
 	}
 	else
 	{
-		//printf("V : (%f,%f)\n", cub->cast.ray_v.coor.x, cub->cast.ray_v.coor.y);
 		*dist = dist_v;
+		ft_v_wall_orient(cub, cub->cast.ray_v.coor.x, cub->cast.ray_v.box.y);
 	}
 }

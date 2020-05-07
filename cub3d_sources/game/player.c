@@ -25,7 +25,7 @@ void	ft_init_player(t_cub *cub)
 	cub->player.dist_to_plane = 0;
 	cub->player.fov.degree = FOV;
 	cub->player.fov.radian = ft_deg_to_rad(FOV);
-	cub->player.step.degree = (FOV / cub->player.plane.x); /// rajout de la division par 2
+	cub->player.step.degree = (FOV / cub->player.plane.x);
 	cub->player.step.radian = ft_deg_to_rad(cub->player.step.degree);
 	//mid et tout ???
 }

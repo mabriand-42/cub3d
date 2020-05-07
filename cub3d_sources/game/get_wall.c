@@ -21,6 +21,7 @@ double	ft_search_wall(t_cub *cub, int (*ft_h)(t_cub *), int (*ft_v)(t_cub *))
 	dist = 0;
 	h = 0;
 	v = 0;
+	cub->cast.wall = Not_given;
 	while (h == 0 || v == 0)
 	{
 		h = ft_h(cub);
@@ -30,23 +31,41 @@ double	ft_search_wall(t_cub *cub, int (*ft_h)(t_cub *), int (*ft_v)(t_cub *))
 		else if ((h == 0 && v == 1) || (h == -1 && v == 1))
 			ft_search_h_hit(&dist, &v, cub, ft_h);
 		else if (h == 1 && v == 1)
-			ft_closer_hit(&dist, cub);
+			ft_closer_hit(&dist, cub,
+						ft_hypotenuse(cub->player.coor,
+						cub->cast.ray_h.coor, cub),
+						ft_hypotenuse(cub->player.coor,
+						cub->cast.ray_v.coor, cub));
 	}
 	return (dist);
 }
 
-double	ft_search_wall_cp(t_cub *cub)
+void	ft_v_wall_orient(t_cub *cub, double coor_x, int box_y)
 {
-	double	dist;
-	int		h_bound;
+	t_box	box;
 
-	dist = 0;
-	h_bound = 0;
-	while (h_bound == 0)
+	box.x = (int)coor_x;
+	box.y = box_y;
+	if (cub->box_map[box.y][box.x] == '1')
+		cub->cast.wall = West;
+	else
 	{
-		h_bound = ft_left_h_hit(cub);
-		if (h_bound == 1)
-			dist = ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor, cub);
+		if (cub->box_map[box.y][box.x - 1] == '1')
+			cub->cast.wall = East;
 	}
-	return (dist);
+}
+
+void	ft_h_wall_orient(t_cub *cub, double coor_y, int box_x)
+{
+	t_box	box;
+
+	box.x = box_x;
+	box.y = (int)coor_y;
+	if (cub->box_map[box.y][box.x] == '1')
+		cub->cast.wall = North;
+	else
+	{
+		if (cub->box_map[box.y - 1][box.x] == '1')
+			cub->cast.wall = South;
+	}
 }

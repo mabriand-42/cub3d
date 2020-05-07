@@ -80,6 +80,8 @@ void	ft_equivalent_data(t_pars_data *pars_data, t_cub *cub)
 	cub->player.plane = pars_data->config.R;
 	cub->player.mid_x = (double)pars_data->config.R.x / 2.0;
 	cub->player.mid_y = (double)pars_data->config.R.y / 2.0;
+	cub->draw.C = pars_data->config.C; // add
+	cub->draw.F = pars_data->config.F; // add
 }
 
 int		ft_pre_start(t_pars_data *pars_data, t_cub *cub, int ac, char **av)
