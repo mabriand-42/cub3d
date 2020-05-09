@@ -30,7 +30,10 @@ void	ft_affine(t_cub *cub, t_bool right)
 
 	x = cub->player.coor.x;
 	y = cub->player.coor.y;
-	a = (cub->player.dist_to_plane) / (cub->cast.delta_screen);
+	if (cub->player.cardinal == West || cub->player.cardinal == East)
+		a = -(cub->cast.delta_screen) / (cub->player.dist_to_plane);
+	else
+		a = (cub->player.dist_to_plane) / (cub->cast.delta_screen);
 	if (right == YES)
 		a = -a;
 	b = y - (a * x);

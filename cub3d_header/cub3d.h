@@ -42,7 +42,7 @@ int				ft_id_s(size_t *pos, char *line, char *id);
 int				ft_id_rfc(size_t *pos, char *line, char *id);
 int				ft_id_nwe(size_t *pos, char *line, char *id);
 int				ft_check_config(t_check check);
-void			ft_update_player(char c, t_map *m);
+int				ft_update_player(char c, t_map *m);
 /*
 ** Init
 */
@@ -65,7 +65,7 @@ int				ft_cf(char *line, size_t *pos, t_color *color, t_bool *check);
 ** Texture
 */
 int				ft_path(char *line, size_t *pos, char **path);
-int				ft_t(char *line, size_t *pos, char **path, t_bool *check);
+int				ft_text(char *line, size_t *pos, char **path, t_bool *check);
 /*
 ** Map
 */
@@ -92,13 +92,13 @@ int				ft_get_config(char *id, char *line, size_t *pos, t_config *c);
 ** Utils
 */
 double  ft_deg_to_rad(double degree);
+size_t	ft_column_len(char **tab); // 
 /*
 ** Player
 */
 void    ft_init_player(t_cub *cub);
 int     ft_get_player_data(t_cub *cub);
 int     ft_get_player_pos(t_cub *cub);
-void    ft_get_player_dir(t_cub *cub, char c);
 int		ft_iscardinal(char c);
 /*
 ** Affine
@@ -109,24 +109,27 @@ double  ft_dist_to_plane(t_cub *cub);
 /*
 ** Wall search
 */
-int     ft_left_h_hit(t_cub *cub);
-int     ft_left_v_hit(t_cub *cub);
-int     ft_right_h_hit(t_cub *cub);
-int     ft_right_v_hit(t_cub *cub);
+int     ft_north_left_h_hit(t_cub *cub);
+int     ft_north_left_v_hit(t_cub *cub);
+int     ft_north_right_h_hit(t_cub *cub);
+int     ft_north_right_v_hit(t_cub *cub);
+int     ft_south_left_h_hit(t_cub *cub);
+int     ft_south_left_v_hit(t_cub *cub);
+int     ft_south_right_h_hit(t_cub *cub);
+int     ft_south_right_v_hit(t_cub *cub);
 void    ft_search_v_hit(double *dist, int *v_bound, t_cub *cub, int (*f)(t_cub *));
 void    ft_search_h_hit(double *dist, int *h_bound, t_cub *cub, int (*f)(t_cub *));
-void    ft_closer_hit(double *dist, t_cub *cub, double dist_h, double dist_v);
+void    ft_closer(double *dist, t_cub *cub, double dist_h, double dist_v);
 double  ft_search_wall(t_cub *cub, int (*ft_h_hit)(t_cub *), int (*ft_v_hit)(t_cub *));
 double  ft_search_wall_cp(t_cub *cub);
 /*
 ** Raycasting
 */
 void   	ft_init_cast(t_cub *cub);
-void   	ft_raycasting(t_cub *cub);
+void	ft_raycasting(t_cub *cub);
 void	ft_new_angle(t_cub *cub);
-void	ft_cast_middle(t_cub *cub);
-void	ft_cast_left_side(t_cub *cub);
-void	ft_cast_right_side(t_cub *cub);
+void	ft_cast_right_side(t_cub *cub, int (*ft_rh)(t_cub *), int (*ft_rv)(t_cub *));
+void	ft_cast_left_side(t_cub *cub, int (*ft_lh)(t_cub *), int (*ft_lv)(t_cub *));
 /*
 ** Draw
 */
@@ -134,11 +137,14 @@ void	ft_init_draw(t_cub *cub);
 int		ft_scale(double	d_to_plane, double d_to_wall);
 void	ft_get_draw_data(t_cub *cub, double d_to_wall);
 void	ft_draw_pxl_line(t_cub *cub, double d_to_wall);
-void	ft_draw_left_rays(t_cub *cub);
-void	ft_draw_right_rays(t_cub *cub);
 int		ft_create_color(int r, int g, int b);
 void	ft_v_wall_orient(t_cub *cub, double	coor_x, int	box_y);
 void	ft_h_wall_orient(t_cub *cub, double	coor_y, int	box_x);
+void	ft_draw_left(t_cub *cub, int (*ft_lh)(t_cub *), int (*ft_lv)(t_cub *));
+void	ft_draw_right(t_cub *cub, int (*ft_rh)(t_cub *), int (*ft_rv)(t_cub *));
+int		ft_get_wall_color(t_cub *cub);
+
+
 
 /*
 ** -------------------------------------------------------------------PROGRAM---

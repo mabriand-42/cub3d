@@ -107,7 +107,7 @@ typedef struct  s_pars_data
 typedef	struct	s_window
 {
 	void			*win_ptr;
-	t_resolution	R; // même que la R de img, et plane
+	t_resolution	R;
 
 }				t_window;
 
@@ -118,7 +118,7 @@ typedef	struct	s_image
 	int				bpp;
 	int				size_line;
 	int				endian;
-	t_resolution	R; // même que la R de win, et plane
+	t_resolution	R;
 }				t_image;
 
 
@@ -165,12 +165,11 @@ typedef struct	s_angle
 
 typedef struct	s_player
 {
-	t_box			box; //yen a qu'une a un instant t	
-	t_coor			coor; //
-	t_vector		dir;//
+	t_box			box;	
+	t_coor			coor;
+	t_cardinal		cardinal;
 	t_resolution	plane;
 	double			mid_x;
-	double			mid_y;
 	double			dist_to_plane;
 	t_angle			fov;
 	t_angle			step;
@@ -191,10 +190,9 @@ typedef	struct	s_cast
 	double		delta_screen;
 	t_affine	affine;
 	t_bool		wall_hit;
-	//int			ray;
 	t_bool		first_H;
 	t_bool		first_V;
-	t_cardinal	wall; //
+	t_cardinal	wall;
 
 }				t_cast;
 

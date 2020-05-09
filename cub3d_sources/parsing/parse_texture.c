@@ -56,7 +56,7 @@ int	ft_path(char *line, size_t *pos, char **path)
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
 */
 
-int	ft_t(char *line, size_t *pos, char **path, t_bool *check)
+int	ft_text(char *line, size_t *pos, char **path, t_bool *check)
 {
 	size_t	pos_2;
 	char	*path_2;

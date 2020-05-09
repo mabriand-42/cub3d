@@ -12,6 +12,10 @@
 
 #include "../../cub3d_header/cub3d.h"
 
+/*
+** Coms
+*/
+
 void	ft_search_v_hit(double *dist, int *v, t_cub *cub, int (*ft)(t_cub *))
 {
 	double dist_h;
@@ -28,9 +32,13 @@ void	ft_search_v_hit(double *dist, int *v, t_cub *cub, int (*ft)(t_cub *))
 	else if (*v == 1)
 	{
 		dist_v = ft_hypotenuse(cub->player.coor, cub->cast.ray_v.coor, cub);
-		ft_closer_hit(dist, cub, dist_h, dist_v);
+		ft_closer(dist, cub, dist_h, dist_v);
 	}
 }
+
+/*
+** Coms
+*/
 
 void	ft_search_h_hit(double *dist, int *h, t_cub *cub, int (*ft)(t_cub *))
 {
@@ -48,11 +56,15 @@ void	ft_search_h_hit(double *dist, int *h, t_cub *cub, int (*ft)(t_cub *))
 	else if (*h == 1)
 	{
 		dist_h = ft_hypotenuse(cub->player.coor, cub->cast.ray_h.coor, cub);
-		ft_closer_hit(dist, cub, dist_h, dist_v);
+		ft_closer(dist, cub, dist_h, dist_v);
 	}
 }
 
-void	ft_closer_hit(double *dist, t_cub *cub, double dist_h, double dist_v)
+/*
+** Coms
+*/
+
+void	ft_closer(double *dist, t_cub *cub, double dist_h, double dist_v)
 {
 	if (dist_h <= dist_v)
 	{

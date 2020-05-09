@@ -12,6 +12,10 @@
 
 #include "../../cub3d_header/cub3d.h"
 
+/*
+** Coms
+*/
+
 double	ft_search_wall(t_cub *cub, int (*ft_h)(t_cub *), int (*ft_v)(t_cub *))
 {
 	double	dist;
@@ -31,14 +35,18 @@ double	ft_search_wall(t_cub *cub, int (*ft_h)(t_cub *), int (*ft_v)(t_cub *))
 		else if ((h == 0 && v == 1) || (h == -1 && v == 1))
 			ft_search_h_hit(&dist, &v, cub, ft_h);
 		else if (h == 1 && v == 1)
-			ft_closer_hit(&dist, cub,
-						ft_hypotenuse(cub->player.coor,
-						cub->cast.ray_h.coor, cub),
-						ft_hypotenuse(cub->player.coor,
-						cub->cast.ray_v.coor, cub));
+		{
+			ft_closer(&dist, cub, ft_hypotenuse(cub->player.coor,
+					cub->cast.ray_h.coor, cub), ft_hypotenuse(cub->player.coor,
+					cub->cast.ray_v.coor, cub));
+		}
 	}
 	return (dist);
 }
+
+/*
+** Coms
+*/
 
 void	ft_v_wall_orient(t_cub *cub, double coor_x, int box_y)
 {
@@ -54,6 +62,10 @@ void	ft_v_wall_orient(t_cub *cub, double coor_x, int box_y)
 			cub->cast.wall = East;
 	}
 }
+
+/*
+** Coms
+*/
 
 void	ft_h_wall_orient(t_cub *cub, double coor_y, int box_x)
 {

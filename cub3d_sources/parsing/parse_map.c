@@ -58,16 +58,16 @@ int		ft_cmp_char(char c1, char c2, t_map *map)
 	if (ft_isvalidchar(c1) == 0 || ft_isvalidchar(c2) == 0)
 		return (0);
 	if (c1 == 'N' || c1 == 'S' || c1 == 'E' || c1 == 'W')
-		ft_update_player(c1, &m);
-	if (c1 == ' ' && (c2 == '0' || c2 == '2' || c2 == 'N'
-		|| c2 == 'S' || c2 == 'E' || c2 == 'W'))
+		return (ft_update_player(c1, &m)); //changed
+	if (c1 == ' ' && (c2 == '0' || c2 == '2' || c2 == 'N' //useless ?
+		|| c2 == 'S' || c2 == 'E' || c2 == 'W')) //useless ?
 		return (0);
 	else if (c1 == '0' && c2 == ' ')
 		return (0);
 	else if (c1 == '2' && c2 == ' ')
 		return (0);
-	else if ((c1 == 'N' || c1 == 'S' || c1 == 'E' || c1 == 'W')
-			&& (c2 == 'N' || c2 == 'S' || c2 == 'E' || c2 == 'W' || c2 == ' '))
+	else if ((c1 == 'N' || c1 == 'S' || c1 == 'E' || c1 == 'W') //useless ?
+			&& (c2 == 'N' || c2 == 'S' || c2 == 'E' || c2 == 'W' || c2 == ' ')) //useless ?
 		return (0);
 	else
 	{

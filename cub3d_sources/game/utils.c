@@ -12,6 +12,10 @@
 
 #include "../../cub3d_header/cub3d.h"
 
+/*
+** Coms
+*/
+
 double	ft_deg_to_rad(double degree)
 {
 	double	radian;
@@ -20,15 +24,23 @@ double	ft_deg_to_rad(double degree)
 	return (radian);
 }
 
+/*
+** Coms
+*/
+
 int		ft_scale(double d_to_plane, double d_to_wall)
 {
 	double	d_wall;
 	int		i_wall;
 
-	d_wall = (2.25 / d_to_wall) * d_to_plane; // je comprends pas pk 2.25
+	d_wall = (2.25 / d_to_wall) * d_to_plane;
 	i_wall = (int)round(d_wall);
 	return (i_wall);
 }
+
+/*
+** Coms
+*/
 
 void	ft_new_angle(t_cub *cub)
 {
@@ -41,7 +53,25 @@ void	ft_new_angle(t_cub *cub)
 	cub->cast.first_V = NO;
 }
 
+/*
+** Coms
+*/
+
 int		ft_create_color(int r, int g, int b)
 {
 	return ((256 * 256 * r) + (256 * g) + b);
+}
+
+/*
+** Coms
+*/
+
+size_t	ft_column_len(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i] != NULL)
+		i++;
+	return (i);
 }

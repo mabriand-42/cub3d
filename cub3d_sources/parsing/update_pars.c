@@ -21,20 +21,30 @@
 ** =========
 */
 
-void	ft_update_player(char c, t_map *m)
+int		ft_update_player(char c, t_map *m)
 {
 	t_map m_2;
 
 	m_2 = *m;
-	if (c == 'N')
-		m_2.cardinal = North;
-	if (c == 'S')
-		m_2.cardinal = South;
-	if (c == 'E')
-		m_2.cardinal = East;
-	if (c == 'W')
-		m_2.cardinal = West;
-	*m = m_2;
+	if (m_2.cardinal == Not_given)
+	{
+		if (c == 'N')
+			m_2.cardinal = North;
+		if (c == 'S')
+			m_2.cardinal = South;
+		if (c == 'E')
+			m_2.cardinal = East;
+		if (c == 'W')
+			m_2.cardinal = West;
+		*m = m_2;
+		return (1);
+		printf("cardinal OK ?\n");
+	}
+	else
+	{
+		printf("fuck yeah");
+		return (0);
+	}
 }
 
 /*

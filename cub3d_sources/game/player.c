@@ -12,14 +12,16 @@
 
 #include "../../cub3d_header/cub3d.h"
 
+/*
+** Coms
+*/
+
 void	ft_init_player(t_cub *cub)
 {
 	cub->player.box.x = 0;
 	cub->player.box.y = 0;
 	cub->player.coor.x = 0;
 	cub->player.coor.y = 0;
-	cub->player.dir.vect_x = 0;
-	cub->player.dir.vect_y = 0;
 	cub->player.coor.x = 0;
 	cub->player.coor.y = 0;
 	cub->player.dist_to_plane = 0;
@@ -27,8 +29,11 @@ void	ft_init_player(t_cub *cub)
 	cub->player.fov.radian = ft_deg_to_rad(FOV);
 	cub->player.step.degree = (FOV / cub->player.plane.x);
 	cub->player.step.radian = ft_deg_to_rad(cub->player.step.degree);
-	//mid et tout ???
 }
+
+/*
+** Coms
+*/
 
 int		ft_iscardinal(char c)
 {
@@ -37,29 +42,9 @@ int		ft_iscardinal(char c)
 	return (0);
 }
 
-void	ft_get_player_dir(t_cub *cub, char c)
-{
-	if (c == 'N')
-	{
-		cub->player.dir.vect_x = 0;
-		cub->player.dir.vect_y = -1;
-	}
-	if (c == 'S')
-	{
-		cub->player.dir.vect_x = 0;
-		cub->player.dir.vect_y = 1;
-	}
-	if (c == 'W')
-	{
-		cub->player.dir.vect_x = -1;
-		cub->player.dir.vect_y = 0;
-	}
-	if (c == 'E')
-	{
-		cub->player.dir.vect_x = 1;
-		cub->player.dir.vect_y = 0;
-	}
-}
+/*
+** Coms
+*/
 
 int		ft_get_player_pos(t_cub *cub)
 {
@@ -74,7 +59,6 @@ int		ft_get_player_pos(t_cub *cub)
 		{
 			if (ft_iscardinal(cub->box_map[i][j]) == 1)
 			{
-				ft_get_player_dir(cub, cub->box_map[i][j]);
 				cub->player.box.x = j;
 				cub->player.box.y = i;
 				cub->player.coor.x = j + 0.5;
@@ -87,6 +71,10 @@ int		ft_get_player_pos(t_cub *cub)
 	}
 	return (0);
 }
+
+/*
+** Coms
+*/
 
 int		ft_get_player_data(t_cub *cub)
 {

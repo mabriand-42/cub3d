@@ -70,6 +70,10 @@ int		ft_check_arg(int ac, char **av, t_pars_data *ptr)
 	return (1);
 }
 
+/*
+** Coms
+*/
+
 void	ft_equivalent_data(t_pars_data *pars_data, t_cub *cub)
 {
 	cub->save = pars_data->save;
@@ -78,11 +82,15 @@ void	ft_equivalent_data(t_pars_data *pars_data, t_cub *cub)
 	cub->text.path = pars_data->config.T;
 	cub->box_map = pars_data->map.two_d;
 	cub->player.plane = pars_data->config.R;
+	cub->player.cardinal = pars_data->map.cardinal;
 	cub->player.mid_x = (double)pars_data->config.R.x / 2.0;
-	cub->player.mid_y = (double)pars_data->config.R.y / 2.0;
-	cub->draw.C = pars_data->config.C; // add
-	cub->draw.F = pars_data->config.F; // add
+	cub->draw.C = pars_data->config.C;
+	cub->draw.F = pars_data->config.F;
 }
+
+/*
+** Coms
+*/
 
 int		ft_pre_start(t_pars_data *pars_data, t_cub *cub, int ac, char **av)
 {

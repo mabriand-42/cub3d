@@ -12,6 +12,10 @@
 
 #include "../../cub3d_header/cub3d.h"
 
+/*
+** Coms
+*/
+
 void	ft_init_draw(t_cub *cub)
 {
 	cub->draw.C_rgb = -1;
@@ -23,6 +27,10 @@ void	ft_init_draw(t_cub *cub)
 	cub->draw.wall.x = -1;
 	cub->draw.wall.y = -1;
 }
+
+/*
+** Coms
+*/
 
 void	ft_get_draw_data(t_cub *cub, double d_to_wall)
 {
@@ -41,6 +49,10 @@ void	ft_get_draw_data(t_cub *cub, double d_to_wall)
 						cub->draw.F.G, cub->draw.F.B);
 }
 
+/*
+** Coms
+*/
+
 void	ft_draw_pxl_line(t_cub *cub, double d_to_wall)
 {
 	int i;
@@ -51,26 +63,7 @@ void	ft_draw_pxl_line(t_cub *cub, double d_to_wall)
 	j = cub->draw.j;
 	ft_init_draw(cub);
 	ft_get_draw_data(cub, d_to_wall);
-	if (cub->cast.wall == North)
-	{
-		color_wall = ft_create_color(166, 255, 0);
-	}
-	else if (cub->cast.wall == South)
-	{
-		color_wall = ft_create_color(193, 173, 220);
-	}
-	else if (cub->cast.wall == West)
-	{
-		color_wall = ft_create_color(166, 255, 0);
-	}
-	else if (cub->cast.wall == East)
-	{
-		color_wall = ft_create_color(193, 3, 220);
-	}
-	else
-	{
-		color_wall = ft_create_color(78, 235, 0);
-	}
+	color_wall = ft_get_wall_color(cub);
 	while (j <= cub->draw.ceiling.y)
 	{
 		mlx_pixel_put(cub->mlx_ptr, cub->win.win_ptr, i, j, cub->draw.C_rgb);
@@ -88,25 +81,33 @@ void	ft_draw_pxl_line(t_cub *cub, double d_to_wall)
 	}
 }
 
-void	ft_draw_left_rays(t_cub *cub)
+/*
+** Coms
+*/
+
+void	ft_draw_left(t_cub *cub, int (*ft_lh)(t_cub *), int (*ft_lv)(t_cub *))
 {
 	double	dist;
 
 	cub->draw.j = 0;
 	ft_affine(cub, NO);
-	dist = ft_search_wall(cub, ft_left_h_hit, ft_left_v_hit);
+	dist = ft_search_wall(cub, ft_lh, ft_lv);
 	ft_draw_pxl_line(cub, dist);
 	ft_new_angle(cub);
 	(cub->draw.i)++;
 }
 
-void	ft_draw_right_rays(t_cub *cub)
+/*
+** Coms
+*/
+
+void	ft_draw_right(t_cub *cub, int (*ft_rh)(t_cub *), int (*ft_rv)(t_cub *))
 {
 	double	dist;
 
 	cub->draw.j = 0;
 	ft_affine(cub, YES);
-	dist = ft_search_wall(cub, ft_right_h_hit, ft_right_v_hit);
+	dist = ft_search_wall(cub, ft_rh, ft_rv);
 	ft_draw_pxl_line(cub, dist);
 	ft_new_angle(cub);
 	(cub->draw.i)--;
