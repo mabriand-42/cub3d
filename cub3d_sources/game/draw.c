@@ -41,8 +41,8 @@ void	ft_get_draw_data(t_cub *cub, double d_to_wall)
 	cub->draw.ceiling.y = ((cub->player.plane.y) / 2) - (slice / 2) - 1;
 	cub->draw.floor.x = ((cub->player.plane.y) / 2) + (slice / 2);
 	cub->draw.floor.y = cub->player.plane.y - 1;
-	cub->draw.wall.x = cub->draw.ceiling.y + 1;
-	cub->draw.wall.y = cub->draw.floor.x - 1;
+	cub->draw.wall.x = abs(cub->draw.ceiling.y + 1);
+	cub->draw.wall.y = abs(cub->draw.floor.x - 1);
 	cub->draw.C_rgb = ft_create_color(cub->draw.C.R,
 						cub->draw.C.G, cub->draw.C.B);
 	cub->draw.F_rgb = ft_create_color(cub->draw.F.R,
@@ -93,7 +93,7 @@ void	ft_draw_left(t_cub *cub, int (*ft_lh)(t_cub *), int (*ft_lv)(t_cub *))
 	ft_affine(cub, NO);
 	dist = ft_search_wall(cub, ft_lh, ft_lv);
 	ft_draw_pxl_line(cub, dist);
-	ft_new_angle(cub);
+	ft_new_angle(cub, NO); //
 	(cub->draw.i)++;
 }
 
@@ -109,6 +109,6 @@ void	ft_draw_right(t_cub *cub, int (*ft_rh)(t_cub *), int (*ft_rv)(t_cub *))
 	ft_affine(cub, YES);
 	dist = ft_search_wall(cub, ft_rh, ft_rv);
 	ft_draw_pxl_line(cub, dist);
-	ft_new_angle(cub);
+	ft_new_angle(cub, YES); // un new_angle pour quand on dépasse a = 0 ?
 	(cub->draw.i)--;
 }

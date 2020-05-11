@@ -25,6 +25,7 @@ int	ft_start(t_cub *cub)
 		cub->win.R.x, cub->win.R.y, "test")) == NULL)
 		return (0);
 	ft_raycasting(cub);
+	ft_event(cub);
 	mlx_loop(cub->mlx_ptr);
 	return (1);
 }

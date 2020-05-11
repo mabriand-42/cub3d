@@ -151,11 +151,11 @@ typedef struct	s_pos
 }				t_pos;
 
 
-typedef	struct	s_vector
+/*typedef	struct	s_vector
 {
 	int	vect_x;
 	int	vect_y;
-}				t_vector;
+}				t_vector;*/
 
 typedef struct	s_angle
 {
@@ -173,6 +173,7 @@ typedef struct	s_player
 	double			dist_to_plane;
 	t_angle			fov;
 	t_angle			step;
+	t_angle			angle; //
 }				t_player;
 
 typedef	struct	s_affine
@@ -185,9 +186,10 @@ typedef	struct	s_cast
 {
 	t_pos		ray_h;
 	t_pos		ray_v;
-	t_angle		angle;
+	t_angle		angle; //
 	t_angle		step;
-	double		delta_screen;
+	double		left_d_screen;
+	double		right_d_screen; // ADDED
 	t_affine	affine;
 	t_bool		wall_hit;
 	t_bool		first_H;
@@ -208,6 +210,16 @@ typedef struct	s_draw
 	int		i;
 	int		j;
 }				t_draw;
+
+typedef struct	s_move
+{
+	t_bool W;
+	t_bool S;
+	t_bool A;
+	t_bool D;
+	t_bool AL;
+	t_bool AR;
+}				t_move;
 
 typedef	struct	s_cub 
 {	

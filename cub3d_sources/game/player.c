@@ -22,13 +22,13 @@ void	ft_init_player(t_cub *cub)
 	cub->player.box.y = 0;
 	cub->player.coor.x = 0;
 	cub->player.coor.y = 0;
-	cub->player.coor.x = 0;
-	cub->player.coor.y = 0;
 	cub->player.dist_to_plane = 0;
 	cub->player.fov.degree = FOV;
 	cub->player.fov.radian = ft_deg_to_rad(FOV);
 	cub->player.step.degree = (FOV / cub->player.plane.x);
 	cub->player.step.radian = ft_deg_to_rad(cub->player.step.degree);
+	cub->player.angle.degree = FOV / 2.0; // ADDED
+	cub->player.angle.radian = ft_deg_to_rad(cub->player.angle.degree); // ADDED
 }
 
 /*

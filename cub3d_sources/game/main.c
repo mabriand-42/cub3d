@@ -17,55 +17,30 @@ int     main(int argc, char **argv)
     t_pars_data pars_data;
     t_cub       cub;
     int         ret_ray;
-///////////////////
     if(ft_pre_start(&pars_data, &cub, argc, argv) == 0)
     {
         printf("ERROR : seems like cub3d did not even try to load!\n\n");
         return(0);
     }
-///////////////////
 	int	ret_player = ft_get_player_data(&cub);
 	if (ret_player == 0)
 	{
         printf("ERROR : probleme in player data!\n\n");
         return(0);
     }
-///////////////////	
-	/*int	ret_cast = ft_raycasting(&cub);
-	if (ret_cast == 0)
-	{
-        printf("ERROR : probleme in raycasting!\n\n");
-        return(0);
-    }*/
-///////////////////
-    ret_ray = ft_start(&cub);
+	ret_ray = ft_start(&cub);
     if (ret_ray == 0)
     {
         printf("ERROR : please check RAYCASTING\n\n");
         return (0);
     }
-///////////////////
     system("leaks a.out");
     return(0);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /*printf("=======RESOLUTION=====\n");
-	printf("%zu\n", pars_data.config.R.x);
-	printf("%zu\n", pars_data.config.R.y);
+	printf("%d\n", pars_data.config.R.x);
+	printf("%d\n", pars_data.config.R.y);
 	printf("=======NO_PATH========\n");
 	printf("%s\n", pars_data.config.T.path_NO);
 	printf("=======SO_PATH========\n");
@@ -88,7 +63,7 @@ int     main(int argc, char **argv)
 	printf("%s\n", pars_data.map.map);
 	printf("=======PLAYER POS=====\n");
 	printf("%d\n", pars_data.map.cardinal);*/
-
+	
     /*i = 0;
 	while ((pars_data.map.two_d[i]) != NULL)
 	{

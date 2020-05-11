@@ -42,13 +42,22 @@ int		ft_scale(double d_to_plane, double d_to_wall)
 ** Coms
 */
 
-void	ft_new_angle(t_cub *cub)
+void	ft_new_angle(t_cub *cub, t_bool right)
 {
 	cub->cast.angle.degree -= (cub->cast.step.degree);
 	cub->cast.angle.radian = ft_deg_to_rad(cub->cast.angle.degree);
-	cub->cast.delta_screen = (cub->player.dist_to_plane) *
+	if (right == NO)
+	{
+		cub->cast.left_d_screen = (cub->player.dist_to_plane) *
 							sin(cub->cast.angle.radian) /
 							cos(cub->cast.angle.radian);
+	}
+	if (right == YES)
+	{
+		cub->cast.right_d_screen = (cub->player.dist_to_plane) *
+							sin(cub->cast.angle.radian) /
+							cos(cub->cast.angle.radian);
+	}
 	cub->cast.first_H = NO;
 	cub->cast.first_V = NO;
 }

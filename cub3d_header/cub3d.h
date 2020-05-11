@@ -42,7 +42,7 @@ int				ft_id_s(size_t *pos, char *line, char *id);
 int				ft_id_rfc(size_t *pos, char *line, char *id);
 int				ft_id_nwe(size_t *pos, char *line, char *id);
 int				ft_check_config(t_check check);
-int				ft_update_player(char c, t_map *m);
+void				ft_update_player(char c, t_map *m);
 /*
 ** Init
 */
@@ -127,7 +127,10 @@ double  ft_search_wall_cp(t_cub *cub);
 */
 void   	ft_init_cast(t_cub *cub);
 void	ft_raycasting(t_cub *cub);
-void	ft_new_angle(t_cub *cub);
+
+void	ft_new_angle(t_cub *cub, t_bool right);
+
+
 void	ft_cast_right_side(t_cub *cub, int (*ft_rh)(t_cub *), int (*ft_rv)(t_cub *));
 void	ft_cast_left_side(t_cub *cub, int (*ft_lh)(t_cub *), int (*ft_lv)(t_cub *));
 /*
@@ -143,7 +146,25 @@ void	ft_h_wall_orient(t_cub *cub, double	coor_y, int	box_x);
 void	ft_draw_left(t_cub *cub, int (*ft_lh)(t_cub *), int (*ft_lv)(t_cub *));
 void	ft_draw_right(t_cub *cub, int (*ft_rh)(t_cub *), int (*ft_rv)(t_cub *));
 int		ft_get_wall_color(t_cub *cub);
+/*
+** Hook
+*/
 
+void	ft_camera_right(t_cub *cub); //
+
+/*void	ft_init_move(t_move *move);*/
+
+int		ft_press_mana(int keycode, t_cub *cub);
+void	ft_event(t_cub *cub);
+void	ft_close_pgm(t_cub *cub);
+
+void	ft_x_plus(t_cub *cub);
+void	ft_x_minus(t_cub *cub);
+void	ft_y_plus(t_cub *cub);
+void	ft_y_minus(t_cub *cub);
+int		ft_key_wads(int keycode, t_cub *cub);
+void	ft_move(t_cub *cub, void (*ft_n)(t_cub *), void (*ft_s)(t_cub *), 
+							void (*ft_w)(t_cub *), void (*ft_e)(t_cub *));
 
 
 /*
@@ -166,6 +187,10 @@ void    ft_init_parse_struct(t_pars_data *ptr);
 int		ft_parse_fd(char *fd_path, t_pars_data *cub);
 int     ft_pre_start(t_pars_data *pars_data, t_cub *cub, int ac, char **av);
 int     ft_start(t_cub  *cub);
+
+
+
+
 
 
 
