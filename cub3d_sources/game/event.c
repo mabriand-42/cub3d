@@ -52,14 +52,24 @@ int 	ft_press_mana(int keycode, t_cub *cub)
 	}
 	if (keycode == K_AR_L)
 	{
-
 		printf("");
 		ft_raycasting(cub);
 	}
 	if (keycode == K_AR_R)
 	{
-		printf("");
-		ft_raycasting(cub);
+		printf("lets try");
+		if (cub->player.cardinal == North)
+		{
+			ft_AR_cam_left(cub);
+			ft_cast_left_side(cub, ft_north_left_h_hit, ft_north_left_v_hit);
+			ft_AR_cam_right(cub);
+			ft_cast_right_side(cub, ft_north_right_h_hit, ft_north_right_v_hit);
+		}
+		else
+		{
+			printf("try again lol\n");
+		}
+		
 	}
 	return(0);
 }

@@ -90,6 +90,7 @@ void	ft_draw_left(t_cub *cub, int (*ft_lh)(t_cub *), int (*ft_lv)(t_cub *))
 	double	dist;
 
 	cub->draw.j = 0;
+	//ft_new_angle(cub, NO);
 	ft_affine(cub, NO);
 	dist = ft_search_wall(cub, ft_lh, ft_lv);
 	ft_draw_pxl_line(cub, dist);
@@ -106,9 +107,10 @@ void	ft_draw_right(t_cub *cub, int (*ft_rh)(t_cub *), int (*ft_rv)(t_cub *))
 	double	dist;
 
 	cub->draw.j = 0;
+	//ft_new_angle(cub, YES);
 	ft_affine(cub, YES);
 	dist = ft_search_wall(cub, ft_rh, ft_rv);
 	ft_draw_pxl_line(cub, dist);
-	ft_new_angle(cub, YES); // un new_angle pour quand on dépasse a = 0 ?
+	ft_new_angle(cub, YES);
 	(cub->draw.i)--;
 }

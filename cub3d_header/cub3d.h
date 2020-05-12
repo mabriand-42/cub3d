@@ -106,6 +106,7 @@ int		ft_iscardinal(char c);
 void	ft_affine(t_cub *cub, t_bool right);
 double  ft_hypotenuse(t_coor  start, t_coor new, t_cub *cub);
 double  ft_dist_to_plane(t_cub *cub);
+double	ft_opposite(double dist_to_plane, t_angle angle); //
 /*
 ** Wall search
 */
@@ -150,7 +151,9 @@ int		ft_get_wall_color(t_cub *cub);
 ** Hook
 */
 
-void	ft_camera_right(t_cub *cub); //
+//void	ft_right_cam(t_cub *cub); //
+void ft_AR_cam_right(t_cub *cub);
+void ft_AR_cam_left(t_cub *cub);
 
 /*void	ft_init_move(t_move *move);*/
 

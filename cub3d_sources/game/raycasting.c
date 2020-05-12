@@ -26,11 +26,11 @@ void	ft_init_cast(t_cub *cub)
 	cub->cast.ray_v.box.y = 0;
 	cub->cast.ray_v.coor.x = 0;
 	cub->cast.ray_v.coor.y = 0;
-	cub->cast.angle.degree = cub->player.angle.degree; //cub->player.fov.degree / 2;
-	cub->cast.angle.radian = cub->player.angle.radian;//cub->player.fov.radian / 2;
+	cub->cast.left_angle = cub->player.left_angle;
+	cub->cast.right_angle = cub->player.right_angle;
 	cub->cast.step = cub->player.step;
-	cub->cast.left_d_screen = cub->player.mid_x;
-	cub->cast.right_d_screen = cub->player.mid_x; //added
+	cub->cast.left_d_screen = ft_opposite(cub->player.dist_to_plane, cub->cast.left_angle); 
+	cub->cast.right_d_screen = ft_opposite(cub->player.dist_to_plane, cub->cast.right_angle);
 	cub->cast.affine.a = 0;
 	cub->cast.affine.b = 0;
 	cub->cast.wall_hit = NO;

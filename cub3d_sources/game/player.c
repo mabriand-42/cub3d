@@ -27,8 +27,11 @@ void	ft_init_player(t_cub *cub)
 	cub->player.fov.radian = ft_deg_to_rad(FOV);
 	cub->player.step.degree = (FOV / cub->player.plane.x);
 	cub->player.step.radian = ft_deg_to_rad(cub->player.step.degree);
-	cub->player.angle.degree = FOV / 2.0; // ADDED
-	cub->player.angle.radian = ft_deg_to_rad(cub->player.angle.degree); // ADDED
+	cub->player.left_angle.degree = (FOV / 2.0); // ADDED
+	cub->player.left_angle.radian = ft_deg_to_rad(cub->player.left_angle.degree); // ADDED
+	cub->player.right_angle.degree = (FOV / 2.0); // ADDED
+	cub->player.right_angle.radian = ft_deg_to_rad(cub->player.left_angle.degree); // ADDED
+	cub->player.rot = 0.0; // ADDED
 }
 
 /*

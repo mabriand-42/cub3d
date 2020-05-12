@@ -173,7 +173,9 @@ typedef struct	s_player
 	double			dist_to_plane;
 	t_angle			fov;
 	t_angle			step;
-	t_angle			angle; //
+	t_angle			left_angle;
+	t_angle			right_angle; //
+	double			rot; //
 }				t_player;
 
 typedef	struct	s_affine
@@ -186,7 +188,8 @@ typedef	struct	s_cast
 {
 	t_pos		ray_h;
 	t_pos		ray_v;
-	t_angle		angle; //
+	t_angle		left_angle;
+	t_angle		right_angle; //
 	t_angle		step;
 	double		left_d_screen;
 	double		right_d_screen; // ADDED

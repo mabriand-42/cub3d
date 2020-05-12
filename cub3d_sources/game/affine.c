@@ -47,6 +47,7 @@ void	ft_affine(t_cub *cub, t_bool right)
 	b = y - (a * x);
 	cub->cast.affine.a = a;
 	cub->cast.affine.b = b;
+	printf("a : %f\n", cub->cast.affine.a);
 }
 
 /*
@@ -69,7 +70,7 @@ double	ft_hypotenuse(t_coor start, t_coor new, t_cub *cub)
 
 	delta_x = fabs(start.x - new.x);
 	delta_y = fabs(start.y - new.y);
-	dist_to_wall = cos(cub->cast.angle.radian) *
+	dist_to_wall = cos(cub->cast.left_angle.radian) *
 					sqrt((delta_x * delta_x) + (delta_y * delta_y));
 	return (dist_to_wall);
 }
@@ -85,12 +86,19 @@ double	ft_hypotenuse(t_coor start, t_coor new, t_cub *cub)
 
 double	ft_dist_to_plane(t_cub *cub)
 {
-	double	mid_x;
-	double	radian;
 	double	dist_to_plane;
 
-	mid_x = cub->player.mid_x;
-	radian = cub->player.fov.radian;
-	dist_to_plane = mid_x / tan(radian);
+	dist_to_plane = cub->player.mid_x / tan(cub->player.fov.radian);
 	return (dist_to_plane);
+}
+
+/*
+**
+*/
+double	ft_opposite(double dist_to_plane, t_angle angle)
+{
+	double opposite;
+
+	opposite = tan(angle.radian) * dist_to_plane;
+	return (opposite);
 }
