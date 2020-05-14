@@ -129,7 +129,7 @@ double  ft_search_wall_cp(t_cub *cub);
 void   	ft_init_cast(t_cub *cub);
 void	ft_raycasting(t_cub *cub);
 
-void	ft_new_angle(t_cub *cub, t_bool right);
+void	ft_new_angle_minus(t_cub *cub, t_bool right);
 
 
 void	ft_cast_right_side(t_cub *cub, int (*ft_rh)(t_cub *), int (*ft_rv)(t_cub *));
@@ -151,9 +151,6 @@ int		ft_get_wall_color(t_cub *cub);
 ** Hook
 */
 
-//void	ft_right_cam(t_cub *cub); //
-void ft_AR_cam_right(t_cub *cub);
-void ft_AR_cam_left(t_cub *cub);
 
 /*void	ft_init_move(t_move *move);*/
 
@@ -169,6 +166,19 @@ int		ft_key_wads(int keycode, t_cub *cub);
 void	ft_move(t_cub *cub, void (*ft_n)(t_cub *), void (*ft_s)(t_cub *), 
 							void (*ft_w)(t_cub *), void (*ft_e)(t_cub *));
 
+void	ft_move_wads(int keycode, t_cub *cub);
+
+
+
+
+/*int    ft_north_cp(t_cub *cub);
+int    ft_south_cp(t_cub *cub);
+int    ft_west_cp(t_cub *cub);
+int    ft_east_cp(t_cub *cub);
+double    ft_NS_search_wall_cp(t_cub *cub, int (*ft)(t_cub *));
+double    ft_WE_search_wall_cp(t_cub *cub, int (*ft)(t_cub *));
+double	ft_search_wall_cp(t_cub *cub);
+void	ft_new_angle_plus(t_cub *cub, t_bool right);*/
 
 /*
 ** -------------------------------------------------------------------PROGRAM---

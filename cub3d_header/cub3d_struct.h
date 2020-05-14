@@ -92,17 +92,12 @@ typedef struct	s_map
 	t_cardinal	cardinal;
 }				t_map;
 
-
-
-//////////////////////////////////////////////////////
 typedef struct  s_pars_data
 {
     t_config    config;
     t_map       map;
 	t_bool		save;
 }               t_pars_data;
-//////////////////////////////////////////////////////
-
 
 typedef	struct	s_window
 {
@@ -120,7 +115,6 @@ typedef	struct	s_image
 	int				endian;
 	t_resolution	R;
 }				t_image;
-
 
 typedef	struct	s_text_img
 {
@@ -150,13 +144,6 @@ typedef struct	s_pos
 	t_coor	coor;
 }				t_pos;
 
-
-/*typedef	struct	s_vector
-{
-	int	vect_x;
-	int	vect_y;
-}				t_vector;*/
-
 typedef struct	s_angle
 {
 	double	degree;
@@ -174,8 +161,7 @@ typedef struct	s_player
 	t_angle			fov;
 	t_angle			step;
 	t_angle			left_angle;
-	t_angle			right_angle; //
-	double			rot; //
+	t_angle			right_angle;
 }				t_player;
 
 typedef	struct	s_affine
@@ -189,16 +175,16 @@ typedef	struct	s_cast
 	t_pos		ray_h;
 	t_pos		ray_v;
 	t_angle		left_angle;
-	t_angle		right_angle; //
+	t_angle		right_angle;
 	t_angle		step;
 	double		left_d_screen;
-	double		right_d_screen; // ADDED
+	double		right_d_screen;
 	t_affine	affine;
 	t_bool		wall_hit;
 	t_bool		first_H;
 	t_bool		first_V;
 	t_cardinal	wall;
-
+	t_angle		bound;
 }				t_cast;
 
 typedef struct	s_draw
@@ -229,15 +215,10 @@ typedef	struct	s_cub
 	void		*mlx_ptr;
 	t_bool		done;
 	t_bool		save;
-
-
 	t_window	win;
 	t_image		img;
-
 	t_text_img	text;
-
 	char		**box_map;
-
 	t_player	player;
 	t_cast		cast;
 	t_draw		draw;

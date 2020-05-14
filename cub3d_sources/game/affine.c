@@ -47,7 +47,6 @@ void	ft_affine(t_cub *cub, t_bool right)
 	b = y - (a * x);
 	cub->cast.affine.a = a;
 	cub->cast.affine.b = b;
-	printf("a : %f\n", cub->cast.affine.a);
 }
 
 /*
@@ -93,8 +92,9 @@ double	ft_dist_to_plane(t_cub *cub)
 }
 
 /*
-**
+** Comms
 */
+
 double	ft_opposite(double dist_to_plane, t_angle angle)
 {
 	double opposite;

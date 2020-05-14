@@ -29,8 +29,10 @@ void	ft_init_cast(t_cub *cub)
 	cub->cast.left_angle = cub->player.left_angle;
 	cub->cast.right_angle = cub->player.right_angle;
 	cub->cast.step = cub->player.step;
-	cub->cast.left_d_screen = ft_opposite(cub->player.dist_to_plane, cub->cast.left_angle); 
-	cub->cast.right_d_screen = ft_opposite(cub->player.dist_to_plane, cub->cast.right_angle);
+	cub->cast.left_d_screen =
+		ft_opposite(cub->player.dist_to_plane, cub->cast.left_angle);
+	cub->cast.right_d_screen =
+		ft_opposite(cub->player.dist_to_plane, cub->cast.right_angle);
 	cub->cast.affine.a = 0;
 	cub->cast.affine.b = 0;
 	cub->cast.wall_hit = NO;
@@ -48,9 +50,10 @@ void	ft_cast_left_side(t_cub *cub,
 {
 	cub->draw.i = 0;
 	ft_init_cast(cub);
-	while (cub->draw.i < cub->player.mid_x)
+	while (cub->cast.left_angle.degree > cub->cast.bound.degree)
 		ft_draw_left(cub, ft_lh, ft_lv);
 }
+
 /*
 ** Coms
 */
@@ -58,13 +61,9 @@ void	ft_cast_left_side(t_cub *cub,
 void	ft_cast_right_side(t_cub *cub,
 			int (*ft_rh)(t_cub *), int (*ft_rv)(t_cub *))
 {
-	double	dist;
-
 	cub->draw.i = cub->player.plane.x - 1;
 	ft_init_cast(cub);
-	if ((cub->player.plane.x % 2) == 0)
-		cub->player.mid_x -= 1;
-	while (cub->draw.i > cub->player.mid_x)
+	while (cub->cast.left_angle.degree > cub->cast.bound.degree)
 		ft_draw_right(cub, ft_rh, ft_rv);
 }
 
